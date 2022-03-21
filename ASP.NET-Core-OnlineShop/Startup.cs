@@ -1,4 +1,5 @@
 using ASP.NET_Core_OnlineShop.Data;
+using ASP.NET_Core_OnlineShop.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,7 @@ namespace ASP.NET_Core_OnlineShop
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddDbContext<ApplicationDbContext>(options => options
+                .AddDbContext<OnlineShopDbContext>(options => options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services
                 .AddDatabaseDeveloperPageExceptionFilter();
@@ -32,17 +33,18 @@ namespace ASP.NET_Core_OnlineShop
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                 })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<OnlineShopDbContext>();
             services
                 .AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
             if (env.IsDevelopment())
             {
                 app
-                    .UseDeveloperExceptionPage() 
+                    .UseDeveloperExceptionPage()
                     .UseMigrationsEndPoint();
             }
             else
@@ -57,10 +59,12 @@ namespace ASP.NET_Core_OnlineShop
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
-                .UseEndpoints(endpoints => {
-                endpoints.MapDefaultControllerRoute();
-                endpoints.MapRazorPages();
-                  });
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapDefaultControllerRoute();
+                    endpoints.MapRazorPages();
+                });
+            
         }
     }
 }
