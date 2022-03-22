@@ -786,3 +786,4 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.pdb
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.genruntimeconfig.cache
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\Add.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\AllDrinks.cshtml.g.cs

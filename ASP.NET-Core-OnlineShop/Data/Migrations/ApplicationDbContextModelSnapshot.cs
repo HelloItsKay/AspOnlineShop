@@ -50,12 +50,6 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("InStock")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPreferredDrink")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LongDescription")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -286,7 +280,7 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                     b.HasOne("ASP.NET_Core_OnlineShop.Data.Models.Category", "Category")
                         .WithMany("Drinks")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");

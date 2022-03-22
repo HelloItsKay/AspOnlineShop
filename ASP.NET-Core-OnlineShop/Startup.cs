@@ -1,8 +1,11 @@
+using ASP.NET_Core_OnlineShop.Controllers;
 using ASP.NET_Core_OnlineShop.Data;
+using ASP.NET_Core_OnlineShop.Data.Models;
 using ASP.NET_Core_OnlineShop.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,6 +66,7 @@ namespace ASP.NET_Core_OnlineShop
                 {
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
+
                 });
             
         }
