@@ -787,3 +787,6 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.genruntimeconfig.cache
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\Add.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\AllDrinks.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\AlcoholicDrinks.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\NonAlcoholicDrinks.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\Details.cshtml.g.cs
