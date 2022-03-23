@@ -28,6 +28,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
                     Name = d.Name,
                     ImageThumbnailUrl = d.ImageThumbnailUrl,
                     Price = d.Price,
+                    Category = d.Category.CategoryName,
                     ShortDescription = d.ShortDescription
                 }).Reverse().ToList();
 
