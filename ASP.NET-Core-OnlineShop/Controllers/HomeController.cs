@@ -41,7 +41,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
             return View(caroselDrinks);
 
-            return View();
+            
         }
 
 

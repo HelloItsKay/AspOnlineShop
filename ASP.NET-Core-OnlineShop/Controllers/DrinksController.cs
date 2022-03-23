@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASP.NET_Core_OnlineShop.Data;
 using ASP.NET_Core_OnlineShop.Data.Models;
+using ASP.NET_Core_OnlineShop.Models;
 using ASP.NET_Core_OnlineShop.Models.Drinks;
 using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -21,6 +22,45 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             this.data = data;
         }
 
+        public IActionResult Serch(string serchingTerm)
+        {
+            string serchingString = serchingTerm;
+            List<DrinksListingViewModel> drinks;
+            if (string.IsNullOrEmpty(serchingString))
+            {
+                drinks = data.Drinks.OrderBy(d => d.Id).Select(d => new DrinksListingViewModel
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    ImageThumbnailUrl = d.ImageThumbnailUrl,
+                    Price = d.Price,
+                    ShortDescription = d.ShortDescription
+
+                }).ToList();
+            }
+            else 
+            {
+                drinks = data.Drinks.Where(d => d.Name.ToLower().Contains(serchingString.ToLower())).Select(d => new DrinksListingViewModel
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    ImageThumbnailUrl = d.ImageThumbnailUrl,
+                    Price = d.Price,
+                    ShortDescription = d.ShortDescription
+
+                }).ToList(); ;
+            }
+
+            if (!string.IsNullOrEmpty(serchingString) && drinks.Count==0)
+            {
+                return View("Error", new ErrorViewModel()
+                {
+                    RequestId = "The desired drink is not available"
+                });
+            }
+
+            return View("AllDrinks",drinks);
+        }
         public IActionResult Details(string id)
         {
             var drink = data.Drinks.Where(d => d.Id == id).Select(d=> new DrinksListingViewModel()

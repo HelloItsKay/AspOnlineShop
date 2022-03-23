@@ -29,6 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Drinks" asp-action="NonAlcoholicDrinks">Non-Alcoholic drinks </a>
                         </li>
+                        
+                        <form class="navbar-form navbar-right" asp-controller="Drinks" asp-action="Serch" method="get">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search for a drink" name="serchingTerm" value="@ViewData["serchingTerm"]">
+                            </div>
+                        </form>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
