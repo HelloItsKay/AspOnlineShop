@@ -1,21 +1,3 @@
 ﻿@using System.Globalization
 @model List<DrinksListingViewModel>
-<div class="row">
-    @foreach (var drink in Model)
-    {
-
-        <div class="body col-md-3">
-            <div class="card">
-                <img class="card-img-top" style="width: 100%; height: 30%;" src="@drink.ImageThumbnailUrl" alt="@drink.Name @drink.Price @drink.ShortDescription">
-                <div class="card-body">
-                    <h2 class="card-title">
-                        <a asp-controller="Drinks" asp-action="Details" asp-route-id="@drink.Id">@drink.Name</a>
-                        @drink.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))
-                    </h2>
-                    <h5 class="card-body"> @drink.ShortDescription </h5>
-                    <a asp-controller="Drinks" asp-action="Details" asp-route-id="@drink.Id" class="btn btn-primary">View</a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
+@Html.Partial("VisualiseDrinksListingViewModelPartial")
