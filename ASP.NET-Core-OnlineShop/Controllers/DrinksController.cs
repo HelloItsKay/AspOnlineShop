@@ -23,6 +23,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             this.data = data;
         }
 
+        public IActionResult Delete(string id)
+        {
+            var drink = data.Drinks.Where(d => d.Id == id).FirstOrDefault();
+            data.Drinks.Remove(drink);
+            data.SaveChanges();
+            return RedirectToAction("AllDrinks", "Drinks");
+        }
 
         [Authorize]
         public IActionResult Edit(string id)

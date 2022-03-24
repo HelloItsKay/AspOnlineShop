@@ -19,15 +19,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drinks" asp-action="AllDrinks">All drinks</a>
-                        </li>
+                    <li class="dropdown" >
+                            <a asp-controller="Drinks"asp-action="AllDrinks"class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Drinks<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <a class="dropdown-item" asp-controller="Drinks" asp-action="NonAlcoholicDrinks" asp-route-category="">Non-alcoholic</a>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drinks" asp-action="AlcoholicDrinks">Alcoholic drinks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drinks" asp-action="NonAlcoholicDrinks">Non-Alcoholic drinks </a>
+                                <a class="dropdown-item" asp-controller="Drinks" asp-action="AlcoholicDrinks" asp-route-category="">Alcoholic drinks</a>
+
+                                <div class="dropdown-divider"></div>
+                                
+                                <a class="dropdown-item" asp-controller="Drinks" asp-action="AllDrinks" asp-route-category="">View all drinks</a>
+                            </ul>
                         </li>
                         
                         <form class="navbar-form navbar-right" asp-controller="Drinks" asp-action="Serch" method="get">
@@ -35,6 +38,13 @@
                                 <input type="text" class="form-control" placeholder="Search for a drink" name="serchingTerm" value="@ViewData["serchingTerm"]">
                             </div>
                         </form>
+                        
+
+                        
+                        
+                        
+                        
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
