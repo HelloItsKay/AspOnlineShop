@@ -7,7 +7,7 @@ using ASP.NET_Core_OnlineShop.Data.Models;
 
 namespace ASP.NET_Core_OnlineShop.Data
 {
-    public class OnlineShopDbContext : IdentityDbContext
+    public class OnlineShopDbContext : IdentityDbContext<User>
     {
         
         public OnlineShopDbContext(DbContextOptions<OnlineShopDbContext> options)
