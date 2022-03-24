@@ -9,24 +9,78 @@ using ASP.NET_Core_OnlineShop.Models.Drinks;
 using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.EntityFrameworkCore;    
 namespace ASP.NET_Core_OnlineShop.Controllers
 {
-    public class DrinksController:Controller
+    public class DrinksController : Controller
     {
         private readonly OnlineShopDbContext data;
-        
 
         public DrinksController(OnlineShopDbContext data)
         {
             this.data = data;
         }
 
+
+        [Authorize]
+        public IActionResult Edit(string id)
+        {
+            var drink = data.Drinks.Find(id);
+            var edit = new DrinkFormModel()
+            {
+                Id = drink.Id,
+                Name = drink.Name,
+                Price = drink.Price,
+                ShortDescription = drink.ShortDescription,
+                LongDescription = drink.LongDescription,
+                CategoryId = drink.CategoryId,
+                ImageThumbnailUrl = drink.ImageThumbnailUrl,
+                ImageUrl = drink.ImageUrl
+            };
+            edit.Categories = this.GetDrinkCategories();
+            return View(edit);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(DrinkFormModel drink)
+        {
+            if (!this.data.Categories.Any(d => d.Id == drink.CategoryId))
+            {
+                this.ModelState.AddModelError(nameof(drink.CategoryId), "Category does not exists.");
+            }
+            if (!ModelState.IsValid)
+            {
+                drink.Categories = this.GetDrinkCategories();
+                return View(drink);
+            }
+
+            var edit = data.Drinks.Where(d => d.Id == drink.Id).Select(d => new Drink
+            {
+                Id = drink.Id,
+                Name = drink.Name,
+                Price = drink.Price,
+                ShortDescription = drink.ShortDescription,
+                LongDescription = drink.LongDescription,
+                CategoryId = drink.CategoryId,
+                ImageThumbnailUrl = drink.ImageThumbnailUrl,
+                ImageUrl = drink.ImageUrl
+            }).FirstOrDefault();
+
+            data.Drinks.Update(edit);
+            data.SaveChanges();
+
+            return RedirectToAction("AllDrinks", "Drinks");
+
+        }
+
         public IActionResult Serch(string serchingTerm)
         {
-            string serchingString = serchingTerm;
+
             List<DrinksListingViewModel> drinks;
-            if (string.IsNullOrEmpty(serchingString))
+            if (string.IsNullOrEmpty(serchingTerm))
             {
                 drinks = data.Drinks.OrderBy(d => d.Id).Select(d => new DrinksListingViewModel
                 {
@@ -38,9 +92,9 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
                 }).ToList();
             }
-            else 
+            else
             {
-                drinks = data.Drinks.Where(d => d.Name.ToLower().Contains(serchingString.ToLower())).Select(d => new DrinksListingViewModel
+                drinks = data.Drinks.Where(d => d.Name.ToLower().Contains(serchingTerm.ToLower())).Select(d => new DrinksListingViewModel
                 {
                     Id = d.Id,
                     Name = d.Name,
@@ -51,7 +105,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
                 }).ToList(); ;
             }
 
-            if (!string.IsNullOrEmpty(serchingString) && drinks.Count==0)
+            if (!string.IsNullOrEmpty(serchingTerm) && drinks.Count == 0)
             {
                 return View("Error", new ErrorViewModel()
                 {
@@ -59,12 +113,12 @@ namespace ASP.NET_Core_OnlineShop.Controllers
                 });
             }
 
-            return View("AllDrinks",drinks);
+            return View("AllDrinks", drinks);
         }
         public IActionResult Details(string id)
         {
-            var drink = data.Drinks.Where(d => d.Id == id).Select(d=> new DrinksListingViewModel()
-            {   
+            var drink = data.Drinks.Where(d => d.Id == id).Select(d => new DrinksListingViewModel()
+            {
                 Name = d.Name,
                 ImageUrl = d.ImageUrl,
                 LongDescription = d.LongDescription,
@@ -72,7 +126,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             });
             return View(drink);
         }
-        
+
         public IActionResult AllDrinks()
         {
             List<DrinksListingViewModel> allDrinks = data
@@ -80,7 +134,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
                 .OrderByDescending(d => d.Id)
                 .Select(d => new DrinksListingViewModel()
                 {
-                    Id=d.Id,
+                    Id = d.Id,
                     Name = d.Name,
                     ImageThumbnailUrl = d.ImageThumbnailUrl,
                     Price = d.Price,
@@ -96,7 +150,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             List<DrinksListingViewModel> allDrinks = data
                 .Drinks
                 .OrderByDescending(d => d.Id)
-                .Where(d=>d.Category.CategoryName== "Alcoholic")
+                .Where(d => d.Category.CategoryName == "Alcoholic")
                 .Select(d => new DrinksListingViewModel()
                 {
                     Id = d.Id,
@@ -129,13 +183,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             return View(allDrinks);
         }
         [Authorize]
-        public IActionResult Add() => View(new AddDrinkFormModel()
+        public IActionResult Add() => View(new DrinkFormModel()
         {
             Categories = this.GetDrinkCategories()
         });
         [Authorize]
         [HttpPost]
-        public IActionResult Add(AddDrinkFormModel drink)
+        public IActionResult Add(DrinkFormModel drink)
         {
             if (!this.data.Categories.Any(d => d.Id == drink.CategoryId))
             {
@@ -146,6 +200,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
                 drink.Categories = this.GetDrinkCategories();
                 return View(drink);
             }
+
 
             var newDrink = new Drink
             {

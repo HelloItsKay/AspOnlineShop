@@ -10,8 +10,9 @@ using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
 
 namespace ASP.NET_Core_OnlineShop.Models.Drinks
 {
-    public class AddDrinkFormModel
+    public class DrinkFormModel
     {
+        public string Id { get; set; }
         [Required]
         public string Name { get; init; }
         [Required]
