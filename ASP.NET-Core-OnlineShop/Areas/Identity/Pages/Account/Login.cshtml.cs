@@ -57,7 +57,7 @@ namespace ASP.NET_Core_OnlineShop.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            
+            HttpContext.Session.Clear();
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
