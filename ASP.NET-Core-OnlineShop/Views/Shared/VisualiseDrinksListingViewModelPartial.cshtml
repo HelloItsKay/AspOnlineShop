@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@using static ASP.NET_Core_OnlineShop.WebConstants;
+﻿
 @model List<DrinksListingViewModel>
 <div class="row">
     @foreach (var drink in Model)
@@ -19,8 +18,9 @@
                         <a asp-controller="Drinks" asp-action="Edit" asp-route-id="@drink.Id" class="btn btn-warning">Edit</a>
                         <a asp-controller="Drinks" asp-action="Delete" asp-route-id="@drink.Id" class="btn btn-danger">Delete</a>
                     }
-                    <a class="btn btn-success" id="cartButton" asp-controller="" asp-action="" asp-route-drinkId="">
-                        Buy
+                    <p class="button ">
+                    <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@drink.Id">
+                        Add to cart
                     </a>
                 </div>
             </div>

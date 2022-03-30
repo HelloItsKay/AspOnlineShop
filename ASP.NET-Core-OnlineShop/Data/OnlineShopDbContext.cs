@@ -16,6 +16,7 @@ namespace ASP.NET_Core_OnlineShop.Data
         }
         public DbSet<Drink> Drinks { get; init; }
         public DbSet<Category> Categories { get; init; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

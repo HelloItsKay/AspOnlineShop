@@ -75,6 +75,29 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                     b.ToTable("Drinks");
                 });
 
+            modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DrinkId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("DrinkId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
             modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -288,6 +311,15 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("ASP.NET_Core_OnlineShop.Data.Models.Drink", "Drink")
+                        .WithMany()
+                        .HasForeignKey("DrinkId");
+
+                    b.Navigation("Drink");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

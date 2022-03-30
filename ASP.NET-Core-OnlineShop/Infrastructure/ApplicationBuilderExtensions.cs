@@ -6,6 +6,7 @@ using ASP.NET_Core_OnlineShop.Data;
 using ASP.NET_Core_OnlineShop.Data.Models;
 using Humanizer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,6 +48,7 @@ namespace ASP.NET_Core_OnlineShop.Infrastructure
             data.SaveChanges();
         }
 
+
         private static void SeedAdministrator(
             IServiceProvider services)
         {
@@ -77,5 +79,7 @@ namespace ASP.NET_Core_OnlineShop.Infrastructure
 
 
         }
+
+        
     }
 }

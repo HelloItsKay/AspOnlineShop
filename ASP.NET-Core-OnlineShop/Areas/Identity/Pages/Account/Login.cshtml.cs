@@ -57,6 +57,7 @@ namespace ASP.NET_Core_OnlineShop.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
@@ -74,7 +75,6 @@ namespace ASP.NET_Core_OnlineShop.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
 
-        
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -100,7 +100,6 @@ namespace ASP.NET_Core_OnlineShop.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return Page();
         }

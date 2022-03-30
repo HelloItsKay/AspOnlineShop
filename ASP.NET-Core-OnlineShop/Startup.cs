@@ -2,8 +2,10 @@ using ASP.NET_Core_OnlineShop.Controllers;
 using ASP.NET_Core_OnlineShop.Data;
 using ASP.NET_Core_OnlineShop.Data.Models;
 using ASP.NET_Core_OnlineShop.Infrastructure;
+using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +31,9 @@ namespace ASP.NET_Core_OnlineShop
                 .AddDatabaseDeveloperPageExceptionFilter();
 
             services
+                .AddSession();
+
+            services
                 .AddDefaultIdentity<User>(options =>
                 {
                     options.Password.RequireDigit = false;
@@ -36,11 +41,15 @@ namespace ASP.NET_Core_OnlineShop
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                 })
+                
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<OnlineShopDbContext>();
                 
             services
                 .AddControllersWithViews();
+
+            services.AddScoped(ShoppingCartService.GetCart);
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,6 +68,7 @@ namespace ASP.NET_Core_OnlineShop
                     .UseHsts();
             }
             app
+                .UseSession()
                 .UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseRouting()
