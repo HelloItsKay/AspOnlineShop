@@ -4,14 +4,16 @@ using ASP.NET_Core_OnlineShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.NET_Core_OnlineShop.Data.Migrations
 {
     [DbContext(typeof(OnlineShopDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220331144238_Added Orders and Details ")]
+    partial class AddedOrdersandDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,90 +75,6 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Drinks");
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.Order", b =>
-                {
-                    b.Property<string>("OrderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("OrderPlaced")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("OrderTotal")
-                        .HasColumnType("money");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<string>("State")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.OrderDetail", b =>
-                {
-                    b.Property<string>("OrderDetailId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DrinkId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("OrderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("money");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("DrinkId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.ShoppingCartItem", b =>
@@ -397,21 +315,6 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.OrderDetail", b =>
-                {
-                    b.HasOne("ASP.NET_Core_OnlineShop.Data.Models.Drink", "Drink")
-                        .WithMany()
-                        .HasForeignKey("DrinkId");
-
-                    b.HasOne("ASP.NET_Core_OnlineShop.Data.Models.Order", "Order")
-                        .WithMany("OrderLines")
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Drink");
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.ShoppingCartItem", b =>
                 {
                     b.HasOne("ASP.NET_Core_OnlineShop.Data.Models.Drink", "Drink")
@@ -475,11 +378,6 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
             modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.Category", b =>
                 {
                     b.Navigation("Drinks");
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_OnlineShop.Data.Models.Order", b =>
-                {
-                    b.Navigation("OrderLines");
                 });
 #pragma warning restore 612, 618
         }
