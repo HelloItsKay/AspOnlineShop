@@ -14,24 +14,15 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly IHomeService data;
-        public HomeController(IHomeService data)
+        public readonly IHomeService service;
+        public HomeController(IHomeService service)
         {
-            this.data = data;
+            this.service = service;
         }
         public IActionResult Index()
         {
-            data.GetDrinksForCarosel();
-
-            var allDrinks = data.GetDrinksForCarosel();
-            var caroselDrinks =new List<DrinksListingViewModel>();
-            for (int i = 0; i < allDrinks.Count-1; i++)
-            {
-                caroselDrinks.Add(allDrinks[i]);
-            }
-
-
-            return View(caroselDrinks);
+            var allDrinks = service.GetDrinksForCarosel();
+            return View(allDrinks);
 
             
         }
