@@ -26,6 +26,18 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         public IActionResult Delete(string id)
         {
             var drink = data.Drinks.Where(d => d.Id == id).FirstOrDefault();
+
+
+            foreach (var element in data.ShoppingCartItems)
+            {
+                if (element.Drink.Id.Equals(drink.Id))
+                {
+                    data.ShoppingCartItems.Remove(element);
+                }
+            }
+
+
+            
             data.Drinks.Remove(drink);
             data.SaveChanges();
             return RedirectToAction("AllDrinks", "Drinks");
