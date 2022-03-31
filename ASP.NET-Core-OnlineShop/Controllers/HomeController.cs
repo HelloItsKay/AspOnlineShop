@@ -8,30 +8,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASP.NET_Core_OnlineShop.Data;
 using ASP.NET_Core_OnlineShop.Models.Drinks;
+using ASP.NET_Core_OnlineShop.Services.Home;
 
 namespace ASP.NET_Core_OnlineShop.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly OnlineShopDbContext data;
-        public HomeController(OnlineShopDbContext data)
+        public readonly IHomeService data;
+        public HomeController(IHomeService data)
         {
             this.data = data;
         }
         public IActionResult Index()
         {
-            List<DrinksListingViewModel> allDrinks = data
-                .Drinks
-                .OrderByDescending(d => d.Id)
-                .Select(d => new DrinksListingViewModel()
-                {
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    Category = d.Category.CategoryName,
-                    ShortDescription = d.ShortDescription
-                }).Reverse().ToList();
+            data.GetDrinksForCarosel();
 
+            var allDrinks = data.GetDrinksForCarosel();
             var caroselDrinks =new List<DrinksListingViewModel>();
             for (int i = 0; i < allDrinks.Count-1; i++)
             {
