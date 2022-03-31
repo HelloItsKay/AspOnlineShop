@@ -10,6 +10,7 @@ using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using ASP.NET_Core_OnlineShop.Services.Drinks;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using static ASP.NET_Core_OnlineShop.WebConstants;
@@ -17,31 +18,18 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 {
     public class DrinksController : Controller
     {
-        private readonly OnlineShopDbContext data;
+        private readonly IDrinkService service;
 
-        public DrinksController(OnlineShopDbContext data)
+        public DrinksController( IDrinkService service)
         {
-            this.data = data;
+            this.service = service;
         }
         [Authorize]
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(string id)
         {
-            var drink = data.Drinks.Where(d => d.Id == id).FirstOrDefault();
-
-
-            foreach (var element in data.ShoppingCartItems)
-            {
-                if (element.Drink.Id.Equals(drink.Id))
-                {
-                    data.ShoppingCartItems.Remove(element);
-                }
-            }
-
-
-
-            data.Drinks.Remove(drink);
-            data.SaveChanges();
+            var drink = service.GetDrinkById(id);
+            service.DeleteDrink(drink);
             return RedirectToAction("AllDrinks", "Drinks");
         }
 
@@ -49,19 +37,9 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(string id)
         {
-            var drink = data.Drinks.Find(id);
-            var edit = new DrinkFormModel()
-            {
-                Id = drink.Id,
-                Name = drink.Name,
-                Price = drink.Price,
-                ShortDescription = drink.ShortDescription,
-                LongDescription = drink.LongDescription,
-                CategoryId = drink.CategoryId,
-                ImageThumbnailUrl = drink.ImageThumbnailUrl,
-                ImageUrl = drink.ImageUrl
-            };
-            edit.Categories = this.GetDrinkCategories();
+            var drink = service.GetDrinkById(id);
+            var edit = service.EditDrink(drink);
+            edit.Categories = service.GetDrinkCategories();
             return View(edit);
         }
 
@@ -71,30 +49,17 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [HttpPost]
         public IActionResult Edit(DrinkFormModel drink)
         {
-            if (!this.data.Categories.Any(d => d.Id == drink.CategoryId))
+            if (!service.DoesCategoryExist(drink))
             {
                 this.ModelState.AddModelError(nameof(drink.CategoryId), "Category does not exists.");
             }
             if (!ModelState.IsValid)
             {
-                drink.Categories = this.GetDrinkCategories();
+                drink.Categories = service.GetDrinkCategories();
                 return View(drink);
             }
 
-            var edit = data.Drinks.Where(d => d.Id == drink.Id).Select(d => new Drink
-            {
-                Id = drink.Id,
-                Name = drink.Name,
-                Price = drink.Price,
-                ShortDescription = drink.ShortDescription,
-                LongDescription = drink.LongDescription,
-                CategoryId = drink.CategoryId,
-                ImageThumbnailUrl = drink.ImageThumbnailUrl,
-                ImageUrl = drink.ImageUrl
-            }).FirstOrDefault();
-
-            data.Drinks.Update(edit);
-            data.SaveChanges();
+            var edit = service.EditDrinkPost(drink);
 
             return RedirectToAction("AllDrinks", "Drinks");
 
@@ -103,32 +68,8 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         public IActionResult Serch(string serchingTerm)
         {
 
-            List<DrinksListingViewModel> drinks;
-            if (string.IsNullOrEmpty(serchingTerm))
-            {
-                drinks = data.Drinks.OrderBy(d => d.Id).Select(d => new DrinksListingViewModel
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-
-                }).ToList();
-            }
-            else
-            {
-                drinks = data.Drinks.Where(d => d.Name.ToLower().Contains(serchingTerm.ToLower())).Select(d => new DrinksListingViewModel
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-
-                }).ToList(); ;
-            }
-
+            var drinks = service.Serch(serchingTerm);
+            
             if (!string.IsNullOrEmpty(serchingTerm) && drinks.Count == 0)
             {
                 return View("Error", new ErrorViewModel()
@@ -141,67 +82,25 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         }
         public IActionResult Details(string id)
         {
-            var drink = data.Drinks.Where(d => d.Id == id).Select(d => new DrinksListingViewModel()
-            {
-                Name = d.Name,
-                ImageUrl = d.ImageUrl,
-                LongDescription = d.LongDescription,
-
-            });
+            var drink = service.GetDrinkDetails(id);
             return View(drink);
         }
 
         public IActionResult AllDrinks()
         {
-            List<DrinksListingViewModel> allDrinks = data
-                .Drinks
-                .OrderByDescending(d => d.Id)
-                .Select(d => new DrinksListingViewModel()
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-                }).ToList();
-
-
+            var allDrinks = service.GetAllDrinks();
             return View(allDrinks);
         }
 
         public IActionResult AlcoholicDrinks()
         {
-            List<DrinksListingViewModel> allDrinks = data
-                .Drinks
-                .OrderByDescending(d => d.Id)
-                .Where(d => d.Category.CategoryName == "Alcoholic")
-                .Select(d => new DrinksListingViewModel()
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-                }).ToList();
-
-
+            var allDrinks = service.GetAlchoholDrinks();
             return View(allDrinks);
         }
 
         public IActionResult NonAlcoholicDrinks()
         {
-            List<DrinksListingViewModel> allDrinks = data
-                .Drinks
-                .OrderByDescending(d => d.Id)
-                .Where(d => d.Category.CategoryName == "Non-alcoholic")
-                .Select(d => new DrinksListingViewModel()
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-                }).ToList();
+            var allDrinks = service.GetAllNonAlchoholDrinks();
 
 
             return View(allDrinks);
@@ -210,48 +109,28 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View(new DrinkFormModel()
         {
-            Categories = this.GetDrinkCategories()
+            Categories = service.GetDrinkCategories()
         });
         [Authorize]
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Add(DrinkFormModel drink)
         {
-            if (!this.data.Categories.Any(d => d.Id == drink.CategoryId))
+            if (!service.DoesCategoryExist(drink))
             {
                 this.ModelState.AddModelError(nameof(drink.CategoryId), "Category does not exists.");
             }
             if (!ModelState.IsValid)
             {
-                drink.Categories = this.GetDrinkCategories();
+                drink.Categories = service.GetDrinkCategories();
                 return View(drink);
             }
 
-
-            var newDrink = new Drink
-            {
-                Name = drink.Name,
-                Price = drink.Price,
-                ShortDescription = drink.ShortDescription,
-                LongDescription = drink.LongDescription,
-                CategoryId = drink.CategoryId,
-                ImageThumbnailUrl = drink.ImageThumbnailUrl,
-                ImageUrl = drink.ImageUrl
-
-
-            };
-            data.Drinks.Add(newDrink);
-            data.SaveChanges();
+            var newDrink = service.CreateDrink(drink);
 
             return RedirectToAction("AllDrinks", "Drinks");
         }
-        private IEnumerable<DrinksCategoryServiceModel> GetDrinkCategories() =>
-            data.Categories
-                .Select(drink => new DrinksCategoryServiceModel
-                {
-                    Id = drink.Id,
-                    Name = drink.CategoryName
-                }).ToList();
+        
     }
 
 }

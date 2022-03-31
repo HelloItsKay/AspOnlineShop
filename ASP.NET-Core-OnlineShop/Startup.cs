@@ -2,6 +2,7 @@ using ASP.NET_Core_OnlineShop.Controllers;
 using ASP.NET_Core_OnlineShop.Data;
 using ASP.NET_Core_OnlineShop.Data.Models;
 using ASP.NET_Core_OnlineShop.Infrastructure;
+using ASP.NET_Core_OnlineShop.Services.Drinks;
 using ASP.NET_Core_OnlineShop.Services.Home;
 using ASP.NET_Core_OnlineShop.Services.Orders;
 using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
@@ -54,6 +55,7 @@ namespace ASP.NET_Core_OnlineShop
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IHomeService, HomeService>();
+            services.AddTransient<IDrinkService, DrinkService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
