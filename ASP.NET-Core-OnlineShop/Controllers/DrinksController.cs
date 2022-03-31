@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.EntityFrameworkCore;    
+using Microsoft.EntityFrameworkCore;
+using static ASP.NET_Core_OnlineShop.WebConstants;
 namespace ASP.NET_Core_OnlineShop.Controllers
 {
     public class DrinksController : Controller
@@ -22,7 +23,8 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         {
             this.data = data;
         }
-
+        [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(string id)
         {
             var drink = data.Drinks.Where(d => d.Id == id).FirstOrDefault();
@@ -37,13 +39,14 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             }
 
 
-            
+
             data.Drinks.Remove(drink);
             data.SaveChanges();
             return RedirectToAction("AllDrinks", "Drinks");
         }
 
         [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(string id)
         {
             var drink = data.Drinks.Find(id);
@@ -63,6 +66,8 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
+
         [HttpPost]
         public IActionResult Edit(DrinkFormModel drink)
         {
@@ -202,11 +207,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             return View(allDrinks);
         }
         [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View(new DrinkFormModel()
         {
             Categories = this.GetDrinkCategories()
         });
         [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Add(DrinkFormModel drink)
         {
