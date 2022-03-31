@@ -53,7 +53,7 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                     b.Property<string>("LongDescription")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(1500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
