@@ -1,0 +1,58 @@
+﻿@model List<MyOrdersViewModel>
+
+<div class="row checkoutForm">
+    <h2>This is your shopping cart. Here are the drinks in your shopping cart.</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th> Amount</th>
+                <th>Drink Name</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Order Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var line in Model)
+            {
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td class="text-left">@line.DrinkName</td>
+                    <td class="text-right">@line.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</td>
+                    <td class="text-right">@line.OrderDate</td>
+
+
+
+
+                </tr>
+}
+        </tbody>
+        <tfoot>
+            <tr>
+
+                @{
+                    decimal total = 0;
+
+                    @foreach (var item in Model)
+                    {
+                        total += item.Price;
+                    }
+                    <td colspan="3" class="text-right">Total money spend so far: </td>
+
+                    <td class="text-right">
+                       @total.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))
+                    </td>
+                }
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn-group">
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,25 +1,21 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ASP.NET_Core_OnlineShop.Data.Models;
 using ASP.NET_Core_OnlineShop.Services.Orders;
 using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DrinkAndGo.Controllers
+namespace ASP.NET_Core_OnlineShop.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IOrderService _orderRepository;
-        private readonly IShoppingCartService _shoppingCart;
+        private readonly IOrderService orderService;
+        private readonly IShoppingCartService shoppingCartService;
 
-        public OrderController(IOrderService orderRepository, IShoppingCartService shoppingCart)
+        public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService)
         {
-            _orderRepository = orderRepository;
-            _shoppingCart = shoppingCart;
+           this. orderService = orderService;
+           this. shoppingCartService = shoppingCartService;
         }
 
         [Authorize]
@@ -32,7 +28,8 @@ namespace DrinkAndGo.Controllers
         [Authorize]
         public IActionResult Checkout(Order order)
         {
-            var items = _shoppingCart.GetShoppingCartItems();
+           // order.Email = User.Identity.Name;
+             var items = shoppingCartService.GetShoppingCartItems();
             if (items.Count == 0)
             {
                 ModelState.AddModelError("", "Your card is empty, add some drinks first");
@@ -40,18 +37,27 @@ namespace DrinkAndGo.Controllers
 
             if (ModelState.IsValid)
             {
-                _orderRepository.CreateOrder(order);
-                _shoppingCart.ClearCart();
+                orderService.CreateOrder(order);
+                shoppingCartService.ClearCart();
                 return RedirectToAction("CheckoutComplete");
             }
 
             return View(order);
         }
-
+        [Authorize]
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
             return View();
         }
+        [Authorize]
+        public IActionResult MyOrders(string username)
+        {
+            List<string> orderId=  orderService.GetMyOrderId(username);
+
+            var myOrders=  orderService.MyOrders(orderId);
+            return View(myOrders);
+        }
+
     }
 }

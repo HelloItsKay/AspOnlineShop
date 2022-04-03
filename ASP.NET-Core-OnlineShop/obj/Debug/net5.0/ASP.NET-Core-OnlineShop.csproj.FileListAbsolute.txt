@@ -844,3 +844,4 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\ShoppingCart\MyCart.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Order\CheckoutComplete.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Order\MyOrders.cshtml.g.cs

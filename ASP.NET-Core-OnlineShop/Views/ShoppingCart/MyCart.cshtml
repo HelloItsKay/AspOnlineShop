@@ -10,7 +10,7 @@
                 <th>Selected amount</th>
                 <th>Drink</th>
                 <th class="text-right">Price</th>
-                <th class="text-right">Subtotal</th>
+                
                 <th></th>
             </tr>
         </thead>
@@ -23,9 +23,7 @@
                 <td class="text-center">@line.Amount</td>
                 <td class="text-left">@line.Drink.Name</td>
                 <td class="text-right">@line.Drink.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</td>
-                <td class="text-right">
-                    @((line.Amount * line.Drink.Price).ToString("C", CultureInfo.GetCultureInfo("bg-BG")))
-                </td>
+               
                 <td class="text-center">
                     <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.Drink.Id">Remove</a>
                 </td>

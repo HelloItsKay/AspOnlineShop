@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ASP.NET_Core_OnlineShop.Data.Models
+@using Microsoft.AspNetCore.Http
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
@@ -7,6 +8,10 @@
     
     <li class="nav-item">
         <a class="btn btn-info " asp-area="" asp-controller="ShoppingCart" asp-action="MyCart">MyCart</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="btn btn-info " asp-area="" asp-controller="Order" asp-action="MyOrders" asp-route-username="@User.Identity.Name">Orders history</a>
     </li>
     @if (SignInManager.IsSignedIn(User))
     {
