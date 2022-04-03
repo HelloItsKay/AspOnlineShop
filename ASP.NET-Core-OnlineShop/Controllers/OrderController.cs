@@ -28,7 +28,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [Authorize]
         public IActionResult Checkout(Order order)
         {
-           // order.Email = User.Identity.Name;
+            order.Email = User.Identity.Name;
              var items = shoppingCartService.GetShoppingCartItems();
             if (items.Count == 0)
             {

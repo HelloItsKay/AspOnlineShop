@@ -94,7 +94,6 @@ namespace ASP.NET_Core_OnlineShop.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
