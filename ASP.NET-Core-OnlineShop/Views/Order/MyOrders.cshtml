@@ -1,7 +1,7 @@
 ﻿@model List<MyOrdersViewModel>
 
 <div class="row checkoutForm">
-    <h2>This is your shopping cart. Here are the drinks in your shopping cart.</h2>
+    <h2>This is your orders history. Here you can find all drinks you bought over the time.</h2>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -22,9 +22,6 @@
                     <td class="text-left">@line.DrinkName</td>
                     <td class="text-right">@line.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</td>
                     <td class="text-right">@line.OrderDate</td>
-
-
-
 
                 </tr>
 }
