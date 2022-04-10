@@ -10,6 +10,10 @@
             <h5 class="card-body"> @Model.LongDescription </h5>
 
         </div>
+        <p class="button ">
+        <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@Model.Id">
+            Add to cart
+        </a>
     </div>
 </div>
 }

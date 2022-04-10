@@ -1299,3 +1299,5 @@ C:\Users\krust\source\repos\AspOnlineShop-v4\ASP.NET-Core-OnlineShop\obj\Debug\n
 C:\Users\krust\source\repos\AspOnlineShop-v4\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ref\ASP.NET-Core-OnlineShop.dll
 C:\Users\krust\source\repos\AspOnlineShop-v4\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.pdb
 C:\Users\krust\source\repos\AspOnlineShop-v4\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.genruntimeconfig.cache
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\About\AboutUs.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Order\EmptyCart.cshtml.g.cs

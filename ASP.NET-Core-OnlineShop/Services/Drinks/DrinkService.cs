@@ -104,6 +104,7 @@
         {
             return data.Drinks.Where(d => d.Id == id).Select(d => new DrinksListingViewModel
             {
+                Id = d.Id,
                 Name = d.Name,
                 ImageUrl = d.ImageUrl,
                 LongDescription = d.LongDescription,
