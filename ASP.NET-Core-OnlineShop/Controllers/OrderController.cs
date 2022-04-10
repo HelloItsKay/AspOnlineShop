@@ -1,4 +1,6 @@
-﻿namespace ASP.NET_Core_OnlineShop.Controllers
+﻿using ASP.NET_Core_OnlineShop.Models.Orders;
+
+namespace ASP.NET_Core_OnlineShop.Controllers
 {
     using System.Collections.Generic;
     using ASP.NET_Core_OnlineShop.Data.Models;
@@ -26,13 +28,13 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Checkout(Order order)
+        public IActionResult Checkout(OrdersFormViewModel order)
         {
             order.Email = User.Identity.Name;
             var items = shoppingCartService.GetShoppingCartItems();
             if (items.Count == 0)
             {
-                ModelState.AddModelError("", "Your card is empty, add some drinks first");
+                return RedirectToAction("EmptyCart");
             }
 
             if (ModelState.IsValid)
@@ -59,5 +61,9 @@
             return View(myOrders);
         }
 
+        public IActionResult EmptyCart()
+        {
+            return View();
+        }
     }
 }

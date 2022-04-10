@@ -1,4 +1,6 @@
-﻿namespace ASP.NET_Core_OnlineShop.Services.Orders
+﻿using ASP.NET_Core_OnlineShop.Models.Orders;
+
+namespace ASP.NET_Core_OnlineShop.Services.Orders
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +20,7 @@
             this.cart = cart;
             this.data = data;
         }
-        public void CreateOrder(Order order)
+        public void CreateOrder(OrdersFormViewModel order)
         {
             order.OrderPlaced = DateTime.Now;
             var shoppingCartItems = cart.GetShoppingCartItems();
@@ -28,7 +30,20 @@
                 order.OrderTotal += item.Drink.Price;
             }
 
-            data.Orders.Add(order);
+            var newOrder = new Order()
+            {
+                OrderId = order.OrderId,
+                FirstName = order.FirstName,
+                LastName = order.LastName,
+                AddressLine1 = order.AddressLine1,
+                AddressLine2 = order.AddressLine2,
+                ZipCode = order.ZipCode,
+                State = order.State,
+                Country = order.Country,
+                PhoneNumber = order.PhoneNumber
+            };
+
+            data.Orders.Add(newOrder);
 
 
 
@@ -36,6 +51,7 @@
             {
                 var orderDetail = new OrderDetail()
                 {
+                    
                     Amount = shoppingCartItem.Amount,
                     DrinkId = shoppingCartItem.Drink.Id,
                     OrderId = order.OrderId,

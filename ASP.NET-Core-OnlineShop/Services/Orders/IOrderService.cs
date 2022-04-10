@@ -1,4 +1,6 @@
-﻿namespace ASP.NET_Core_OnlineShop.Services.Orders
+﻿using ASP.NET_Core_OnlineShop.Models.Orders;
+
+namespace ASP.NET_Core_OnlineShop.Services.Orders
 {
     using System.Collections.Generic;
     using ASP.NET_Core_OnlineShop.Data.Models;
@@ -6,7 +8,7 @@
 
     public interface IOrderService
     {
-        public void CreateOrder(Order order);
+        public void CreateOrder(OrdersFormViewModel order);
         public List<string> GetMyOrderId(string Username);
 
         public List<MyOrdersViewModel> MyOrders(List<string> idmyOrdersId);
