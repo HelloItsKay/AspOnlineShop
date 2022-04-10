@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using ASP.NET_Core_OnlineShop.Models.Drinks;
-using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
-
-namespace ASP.NET_Core_OnlineShop.Services.Drinks
+﻿namespace ASP.NET_Core_OnlineShop.Services.Drinks
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using ASP.NET_Core_OnlineShop.Data.Models;
+    using ASP.NET_Core_OnlineShop.Models.Drinks;
+    using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
     public interface IDrinkService
     {
         public Drink GetDrinkById(string id);

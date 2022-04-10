@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using Humanizer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using static ASP.NET_Core_OnlineShop.WebConstants;
-namespace ASP.NET_Core_OnlineShop.Infrastructure
+﻿namespace ASP.NET_Core_OnlineShop.Infrastructure
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ASP.NET_Core_OnlineShop.Data;
+    using ASP.NET_Core_OnlineShop.Data.Models;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using static ASP.NET_Core_OnlineShop.WebConstants;
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder PrepareDatabase(this IApplicationBuilder app)
@@ -61,7 +58,7 @@ namespace ASP.NET_Core_OnlineShop.Infrastructure
                 new Drink
                 {
                     Name = "Beer",
-                    Price = 3.95M, 
+                    Price = 3.95M,
                     ShortDescription = "The most widely consumed alcohol",
                     LongDescription = "Beer is the world's oldest and most widely consumed alcoholic drink; it is the third most popular drink overall, after water and tea. The production of beer is called brewing, which involves the fermentation of starches, mainly derived from cereal grains—most commonly malted barley, although wheat, maize (corn), and rice are widely used.",
                     CategoryId = 1,

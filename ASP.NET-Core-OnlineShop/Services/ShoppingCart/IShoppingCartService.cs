@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
+﻿namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
 {
+    using System.Collections.Generic;
     using ASP.NET_Core_OnlineShop.Data.Models;
 
     public interface IShoppingCartService
     {
-        // ShoppingCart GetCart(IServiceProvider services);
         void AddToCart(Drink drink, int amount);
          int RemoveFromCart(Drink drink);
         List<ShoppingCartItem> GetShoppingCartItems();
@@ -17,5 +12,6 @@ namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
          void ClearCart();
          decimal GetShoppingCartTotal();
          public ShoppingCart GiveCartToView();
+         public Drink SelectedDrink(string drinkId);
     }
 }

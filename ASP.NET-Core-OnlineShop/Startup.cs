@@ -1,23 +1,20 @@
-using ASP.NET_Core_OnlineShop.Controllers;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using ASP.NET_Core_OnlineShop.Infrastructure;
-using ASP.NET_Core_OnlineShop.Services.Drinks;
-using ASP.NET_Core_OnlineShop.Services.Home;
-using ASP.NET_Core_OnlineShop.Services.Orders;
-using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace ASP.NET_Core_OnlineShop
 {
+    using Data;
+    using ASP.NET_Core_OnlineShop.Data.Models;
+    using Infrastructure;
+    using Services.Drinks;
+    using Services.Home;
+    using Services.Orders;
+    using Services.ShoppingCart;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     public class Startup
     {
         public Startup(IConfiguration configuration) =>
@@ -44,10 +41,10 @@ namespace ASP.NET_Core_OnlineShop
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                 })
-                
+
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<OnlineShopDbContext>();
-                
+
             services
                 .AddControllersWithViews();
 
@@ -86,7 +83,7 @@ namespace ASP.NET_Core_OnlineShop
                     endpoints.MapRazorPages();
 
                 });
-            
+
         }
     }
 }

@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using ASP.NET_Core_OnlineShop.Models.Drinks;
-using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-
-namespace ASP.NET_Core_OnlineShop.Services.Drinks
+﻿namespace ASP.NET_Core_OnlineShop.Services.Drinks
 {
-    public class DrinkService:IDrinkService
+    using System.Collections.Generic;
+    using System.Linq;
+    using Data;
+    using ASP.NET_Core_OnlineShop.Data.Models;
+    using ASP.NET_Core_OnlineShop.Models.Drinks;
+    using Models;
+
+    public class DrinkService : IDrinkService
     {
         private readonly OnlineShopDbContext data;
-        
+
         public DrinkService(OnlineShopDbContext data)
         {
             this.data = data;
-           
+
         }
         public Drink GetDrinkById(string id)
         {
@@ -40,7 +37,7 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
 
         public DrinkFormModel EditDrink(Drink drink)
         {
-            return  new DrinkFormModel()
+            return new DrinkFormModel
             {
                 Id = drink.Id,
                 Name = drink.Name,
@@ -55,7 +52,7 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
 
         public Drink EditDrinkPost(DrinkFormModel drink)
         {
-           var edit=  data.Drinks.Where(d => d.Id == drink.Id).Select(d => new Drink
+            var edit = data.Drinks.Where(d => d.Id == drink.Id).Select(d => new Drink
             {
                 Id = drink.Id,
                 Name = drink.Name,
@@ -105,7 +102,7 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
 
         public IQueryable<DrinksListingViewModel> GetDrinkDetails(string id)
         {
-          return  data.Drinks.Where(d => d.Id == id).Select(d => new DrinksListingViewModel()
+            return data.Drinks.Where(d => d.Id == id).Select(d => new DrinksListingViewModel
             {
                 Name = d.Name,
                 ImageUrl = d.ImageUrl,
@@ -116,33 +113,33 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
 
         public List<DrinksListingViewModel> GetAllDrinks()
         {
-           return data
-                .Drinks
-                .OrderByDescending(d => d.Id)
-                .Select(d => new DrinksListingViewModel()
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-                }).ToList();
+            return data
+                 .Drinks
+                 .OrderByDescending(d => d.Id)
+                 .Select(d => new DrinksListingViewModel
+                 {
+                     Id = d.Id,
+                     Name = d.Name,
+                     ImageThumbnailUrl = d.ImageThumbnailUrl,
+                     Price = d.Price,
+                     ShortDescription = d.ShortDescription
+                 }).ToList();
         }
 
         public List<DrinksListingViewModel> GetAlchoholDrinks()
         {
-          return  data
-                .Drinks
-                .OrderByDescending(d => d.Id)
-                .Where(d => d.Category.CategoryName == "Alcoholic")
-                .Select(d => new DrinksListingViewModel()
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    ImageThumbnailUrl = d.ImageThumbnailUrl,
-                    Price = d.Price,
-                    ShortDescription = d.ShortDescription
-                }).ToList();
+            return data
+                  .Drinks
+                  .OrderByDescending(d => d.Id)
+                  .Where(d => d.Category.CategoryName == "Alcoholic")
+                  .Select(d => new DrinksListingViewModel
+                  {
+                      Id = d.Id,
+                      Name = d.Name,
+                      ImageThumbnailUrl = d.ImageThumbnailUrl,
+                      Price = d.Price,
+                      ShortDescription = d.ShortDescription
+                  }).ToList();
         }
 
         public List<DrinksListingViewModel> GetAllNonAlchoholDrinks()
@@ -152,7 +149,7 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
                 .Drinks
                 .OrderByDescending(d => d.Id)
                 .Where(d => d.Category.CategoryName == "Non-alcoholic")
-                .Select(d => new DrinksListingViewModel()
+                .Select(d => new DrinksListingViewModel
                 {
                     Id = d.Id,
                     Name = d.Name,
@@ -184,13 +181,13 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
 
         public IEnumerable<DrinksCategoryServiceModel> GetDrinkCategories()
         {
-           
-           return     data.Categories
-                    .Select(drink => new DrinksCategoryServiceModel
-                    {
-                        Id = drink.Id,
-                        Name = drink.CategoryName
-                    }).ToList();
+
+            return data.Categories
+                     .Select(drink => new DrinksCategoryServiceModel
+                     {
+                         Id = drink.Id,
+                         Name = drink.CategoryName
+                     }).ToList();
         }
 
         public bool DoesCategoryExist(DrinkFormModel drink)

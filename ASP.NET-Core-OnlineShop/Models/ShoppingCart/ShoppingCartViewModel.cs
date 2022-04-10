@@ -1,8 +1,6 @@
-﻿
-//using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
-
-namespace ASP.NET_Core_OnlineShop.Models.ShoppingCart
-{ using ASP.NET_Core_OnlineShop.Data.Models;
+﻿namespace ASP.NET_Core_OnlineShop.Models.ShoppingCart
+{
+    using ASP.NET_Core_OnlineShop.Data.Models;
 
     public class ShoppingCartViewModel
     {

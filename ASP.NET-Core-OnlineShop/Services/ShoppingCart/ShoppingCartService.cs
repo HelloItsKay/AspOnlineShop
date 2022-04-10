@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
+﻿namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ASP.NET_Core_OnlineShop.Data;
     using ASP.NET_Core_OnlineShop.Data.Models;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class ShoppingCartService : IShoppingCartService
 
@@ -22,20 +19,20 @@ namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
             this.data = data;
             this.cart = cart;
         }
-        public static ShoppingCart GetCart(IServiceProvider services)
+        public static  ShoppingCart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?
                 .HttpContext.Session;
 
-            
-           
+
+
 
             var context = services.GetService<OnlineShopDbContext>();
 
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
 
             session.SetString("CartId", cartId);
-            
+
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
@@ -126,6 +123,11 @@ namespace ASP.NET_Core_OnlineShop.Services.ShoppingCart
         public ShoppingCart GiveCartToView()
         {
             return cart;
+        }
+
+        public Drink SelectedDrink(string drinkId)
+        {
+            return data.Drinks.FirstOrDefault(p => p.Id == drinkId);
         }
     }
 }

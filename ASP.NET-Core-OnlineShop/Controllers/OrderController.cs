@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using ASP.NET_Core_OnlineShop.Services.Orders;
-using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ASP.NET_Core_OnlineShop.Controllers
+﻿namespace ASP.NET_Core_OnlineShop.Controllers
 {
+    using System.Collections.Generic;
+    using ASP.NET_Core_OnlineShop.Data.Models;
+    using ASP.NET_Core_OnlineShop.Services.Orders;
+    using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
@@ -14,22 +14,22 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
         public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService)
         {
-           this. orderService = orderService;
-           this. shoppingCartService = shoppingCartService;
+            this.orderService = orderService;
+            this.shoppingCartService = shoppingCartService;
         }
 
         [Authorize]
         public IActionResult Checkout()
         {
             return View();
-        } 
+        }
 
         [HttpPost]
         [Authorize]
         public IActionResult Checkout(Order order)
         {
             order.Email = User.Identity.Name;
-             var items = shoppingCartService.GetShoppingCartItems();
+            var items = shoppingCartService.GetShoppingCartItems();
             if (items.Count == 0)
             {
                 ModelState.AddModelError("", "Your card is empty, add some drinks first");
@@ -53,9 +53,9 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [Authorize]
         public IActionResult MyOrders(string username)
         {
-            List<string> orderId=  orderService.GetMyOrderId(username);
+            List<string> orderId = orderService.GetMyOrderId(username);
 
-            var myOrders=  orderService.MyOrders(orderId);
+            var myOrders = orderService.MyOrders(orderId);
             return View(myOrders);
         }
 

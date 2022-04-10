@@ -1,17 +1,9 @@
-﻿using ASP.NET_Core_OnlineShop.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Models.Drinks;
-using ASP.NET_Core_OnlineShop.Services.Home;
-
-namespace ASP.NET_Core_OnlineShop.Controllers
+﻿namespace ASP.NET_Core_OnlineShop.Controllers
 {
+    using ASP.NET_Core_OnlineShop.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+    using ASP.NET_Core_OnlineShop.Services.Home;
     public class HomeController : Controller
     {
         public readonly IHomeService service;
@@ -24,7 +16,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             var allDrinks = service.GetDrinksForCarosel();
             return View(allDrinks);
 
-            
+
         }
 
 

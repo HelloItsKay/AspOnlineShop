@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using ASP.NET_Core_OnlineShop.Models;
-using ASP.NET_Core_OnlineShop.Models.Drinks;
-using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using ASP.NET_Core_OnlineShop.Services.Drinks;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.EntityFrameworkCore;
-using static ASP.NET_Core_OnlineShop.WebConstants;
-namespace ASP.NET_Core_OnlineShop.Controllers
+﻿namespace ASP.NET_Core_OnlineShop.Controllers
 {
+    using ASP.NET_Core_OnlineShop.Models;
+    using ASP.NET_Core_OnlineShop.Models.Drinks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using ASP.NET_Core_OnlineShop.Services.Drinks;
+    using static ASP.NET_Core_OnlineShop.WebConstants;
     public class DrinksController : Controller
     {
         private readonly IDrinkService service;
 
-        public DrinksController( IDrinkService service)
+        public DrinksController(IDrinkService service)
         {
             this.service = service;
         }
@@ -69,7 +59,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         {
 
             var drinks = service.Serch(serchingTerm);
-            
+
             if (!string.IsNullOrEmpty(serchingTerm) && drinks.Count == 0)
             {
                 return View("Error", new ErrorViewModel()
@@ -130,7 +120,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
             return RedirectToAction("AllDrinks", "Drinks");
         }
-        
+
     }
 
 }
