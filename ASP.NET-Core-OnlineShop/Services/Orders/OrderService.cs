@@ -22,12 +22,15 @@ namespace ASP.NET_Core_OnlineShop.Services.Orders
         }
         public void CreateOrder(OrdersFormViewModel order)
         {
-            order.OrderPlaced = DateTime.Now;
+            
+            var currentOrderTime=DateTime.Now;
+            
             var shoppingCartItems = cart.GetShoppingCartItems();
 
+            decimal totalOrder = 0;
             foreach (var item in shoppingCartItems)
             {
-                order.OrderTotal += item.Drink.Price;
+                totalOrder += item.Drink.Price;
             }
 
             var newOrder = new Order()
@@ -40,7 +43,10 @@ namespace ASP.NET_Core_OnlineShop.Services.Orders
                 ZipCode = order.ZipCode,
                 State = order.State,
                 Country = order.Country,
-                PhoneNumber = order.PhoneNumber
+                PhoneNumber = order.PhoneNumber,
+                Email = order.Email,
+                OrderTotal = totalOrder,
+                OrderPlaced = currentOrderTime
             };
 
             data.Orders.Add(newOrder);
@@ -55,9 +61,9 @@ namespace ASP.NET_Core_OnlineShop.Services.Orders
                     Amount = shoppingCartItem.Amount,
                     DrinkId = shoppingCartItem.Drink.Id,
                     OrderId = order.OrderId,
-                    Price = shoppingCartItem.Drink.Price
+                    Price = shoppingCartItem.Drink.Price,
+                    
                 };
-
                 data.OrderDetails.Add(orderDetail);
             }
 

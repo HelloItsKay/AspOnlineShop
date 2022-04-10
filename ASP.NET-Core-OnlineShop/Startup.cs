@@ -1,4 +1,6 @@
 
+using Microsoft.AspNetCore.Mvc;
+
 namespace ASP.NET_Core_OnlineShop
 {
     using Data;
@@ -25,7 +27,7 @@ namespace ASP.NET_Core_OnlineShop
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddDbContext<OnlineShopDbContext>(options => options
+                .AddDbContext<OnlineShopDbContext>(options =>options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services
                 .AddDatabaseDeveloperPageExceptionFilter();
@@ -46,7 +48,10 @@ namespace ASP.NET_Core_OnlineShop
                 .AddEntityFrameworkStores<OnlineShopDbContext>();
 
             services
-                .AddControllersWithViews();
+                .AddControllersWithViews(options =>
+                {
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                });
 
             services.AddScoped(ShoppingCartService.GetCart);
             services.AddTransient<IShoppingCartService, ShoppingCartService>();

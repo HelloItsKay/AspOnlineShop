@@ -129,7 +129,7 @@
 
         public List<DrinksListingViewModel> GetAlchoholDrinks()
         {
-            return data
+          return    data
                   .Drinks
                   .OrderByDescending(d => d.Id)
                   .Where(d => d.Category.CategoryName == "Alcoholic")
@@ -141,6 +141,7 @@
                       Price = d.Price,
                       ShortDescription = d.ShortDescription
                   }).ToList();
+             
         }
 
         public List<DrinksListingViewModel> GetAllNonAlchoholDrinks()
