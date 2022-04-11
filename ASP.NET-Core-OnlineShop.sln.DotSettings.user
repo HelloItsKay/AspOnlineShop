@@ -1,0 +1,27 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=52eb3dee_002D445a_002D4654_002Dbb35_002D1a09d86c1333/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetDrinkByIdShouldReturnNullWhenTheIdWeNeedIsNotInTheDatabase #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.DrinkServiceTest.GetDrinkByIdShouldReturnNullWhenTheIdWeNeedIsNotInTheDatabase&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.OrderServiceTest.GetMyOrderIdShouldThrowNullException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.OrderServiceTest.GetMyOrderIdShouldReturnValidResult&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.OrderServiceTest.GetMyOrderId&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.OrderServiceTest.GetMyOrderIdShouldReturnNothingWhenIdDoesNotExists&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.OrderServiceTest.MyOrdersShouldReturnListWithOrders22&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.OrderServiceTest.MyOrdersShouldReturnEmptyListWhenNotExistingParam&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.ShoppingCartServiceTest.AddItemToCartShouldThrowError&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.ShoppingCartServiceTest.AddItemToCartShouldAddNewItemIfNull&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.ShoppingCartServiceTest.RemoveItemFromCart&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.ShoppingCartServiceTest.RemoveItemFromCartShouldRemoveNothingAndReturn0IfItemDoesNotExist&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.ShoppingCartServiceTest.SelectDrinkShouldReturnDesiredDrink22&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.ShoppingCartServiceTest.SelectDrinkShouldReturnNull&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5694ea6e_002Dd632_002D4ab4_002Db6a5_002D58bc0a3258e8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DeleteDrinkShouldThrowError" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.DrinkServiceTest.GetDrinkByIdShouldReturnNullWhenTheIdWeNeedIsNotInTheDatabase&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.DrinkServiceTest.EditDrinkShouldThrowExceptionWhenWeAttemptToEditNotExistingDrink&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.DrinkServiceTest.GetDrinkDetailsShouldReturnNothingWhenNonExistingParam&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Services.DrinkServiceTest.CreateNewDrinkShouldThrowErrorWhenNull&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

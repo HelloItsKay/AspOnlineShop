@@ -18,49 +18,50 @@ namespace OnlineShop.Test.Services
   public  static class OrderServiceTest
     {
         [Fact]
-        public static void GetMyOrderIdReturnTypeList()
-        {
-            using var data = DatabaseMock.Instance;
-            var cart = MockShopingCartService.Instance;
-
-          
-
-            var orderService = new OrderService(cart,data);
-
-            string username = "test@test.com";
-            orderService.GetMyOrderId(username);
-
-            Assert.Equal(0, data.Orders.Count());
-            Assert.IsType<List<string>>(orderService.GetMyOrderId(username));
-
-        }
-        [Fact]
-        public static void GetMyORdersReturnValue1IfthereIsOrder()
+        public static void GetMyOrderIdShouldReturnValidResult()
         {
             using var data = DatabaseMock.Instance;
             var cart = MockShopingCartService.Instance;
 
             data.Orders.Add(new Order()
             {
-                FirstName = "test",
-                LastName = "test",
-                AddressLine1 = "test",
-                AddressLine2 = "test",
-                Email = "test",
-                Country = "test",
-                ZipCode = "test",
+                OrderId = "1",
+                Email = "test@test.com"
+            });
+            data.SaveChanges();
 
+            var orderService = new OrderService(cart,data);
+            string username = "test@test.com";
+            var result=  orderService.GetMyOrderId(username);
+
+            Assert.Equal("1",result.FirstOrDefault());
+            Assert.IsType<List<string>>(orderService.GetMyOrderId(username));
+
+        }
+
+        [Fact]
+        public static void GetMyOrderIdShouldReturnNothingWhenIdDoesNotExists()
+        {
+            using var data = DatabaseMock.Instance;
+            var cart = MockShopingCartService.Instance;
+
+
+            data.Orders.Add(new Order()
+            {
+                OrderId = "1",
+                Email = "test@test.com"
             });
             data.SaveChanges();
 
             var orderService = new OrderService(cart, data);
+            string username = "test@test.com";
+            var result = orderService.GetMyOrderId($"test@asd.com");
 
-            string username = "test";
-            orderService.GetMyOrderId(username);
+            Assert.Equal(0,result.Count);
 
-            Assert.Equal(1, data.Orders.Count());
-            Assert.IsType<List<string>>(orderService.GetMyOrderId(username));
+
         }
+
         [Fact]
         public static void MyOrdersShouldReturnListWithOrders()
         {
@@ -91,20 +92,47 @@ namespace OnlineShop.Test.Services
             string username = "test";
             List<string> id = new List<string>();
             id.Add(username);
-
-
-            var mok= data.OrderDetails.Where(x => id.Contains(x.OrderId)).Select(x => new MyOrdersViewModel
-            {
-                DrinkName = x.Drink.Name,
-                Amount = x.Amount,
-                Price = x.Price,
-                OrderDate = data.Orders.Where(o => o.OrderId.Contains(x.OrderId)).Select(x => x.OrderPlaced).FirstOrDefault()
-
-            }).OrderByDescending(x => x.OrderDate).ToList();
             var result=   orderService.MyOrders(id);
 
-          Assert.Equal(1,result.Count);
+             Assert.Equal(1,result.Count);
             Assert.IsType<List<MyOrdersViewModel>>(result);
         }
+
+        [Fact]
+        public static void MyOrdersShouldReturnEmptyListWhenNotExistingParam()
+        {
+            using var data = DatabaseMock.Instance;
+            var cart = MockShopingCartService.Instance;
+
+            data.Orders.Add(new Order()
+            {
+                FirstName = "test",
+                LastName = "test",
+                AddressLine1 = "test",
+                AddressLine2 = "test",
+                Email = "test",
+                Country = "test",
+                ZipCode = "test",
+                OrderId = "test",
+
+            });
+            data.OrderDetails.Add(new OrderDetail()
+            {
+                Amount = 2,
+                OrderId = "test",
+            });
+            data.SaveChanges();
+
+            var orderService = new OrderService(cart, data);
+
+            string username = "test";
+            List<string> id = new List<string>();
+            id.Add(username);
+            var result = orderService.MyOrders(null);
+
+            Assert.Equal(0, result.Count);
+            Assert.IsType<List<MyOrdersViewModel>>(result);
+        }
+
     }
 }

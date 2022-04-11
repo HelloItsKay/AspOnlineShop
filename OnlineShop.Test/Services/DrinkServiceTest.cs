@@ -11,39 +11,42 @@ using Xunit;
 
 namespace OnlineShop.Test.Services
 {
-  public  class DrinkServiceTest
+    public class DrinkServiceTest
     {
         [Fact]
         public void GetDrinkByIdShouldReturnDrinkById()
         {
-           using var data = DatabaseMock.Instance;
+            using var data = DatabaseMock.Instance;
 
-           var testId = "testId";
-           data.Add(new Drink { Id = testId });
-           data.SaveChanges();
+            var testId = "testId";
+            data.Add(new Drink { Id = testId });
+            data.SaveChanges();
             var drinkService = new DrinkService(data);
 
             var result = drinkService.GetDrinkById(testId);
 
             Assert.NotNull(result);
             Assert.IsType<Drink>(result);
-            
-        } 
+
+        }
+
         [Fact]
         public void GetDrinkByIdShouldReturnNullWhenTheIdWeNeedIsNotInTheDatabase()
         {
-           using var data = DatabaseMock.Instance;
+            using var data = DatabaseMock.Instance;
 
-           string testId = "test1";
-           data.Add(new Drink { Id = testId });
-           data.SaveChanges();
+            string testId = "test1";
+            data.Add(new Drink
+            {
+                Id = testId
+            });
+            data.SaveChanges();
             var drinkService = new DrinkService(data);
 
             var result = drinkService.GetDrinkById("test2");
             Assert.Null(result);
-            
-            
-            
+            Assert.Throws<NullReferenceException>((() => result.Id));
+
         }
 
         [Fact]
@@ -63,9 +66,48 @@ namespace OnlineShop.Test.Services
             var drinkService = new DrinkService(data);
 
             drinkService.DeleteDrink(drink);
-            
+
             Assert.Equal(0, data.Drinks.Count());
-            
+
+        }
+
+        [Fact]
+        public void DeleteDrinkShouldThrowErrorWhenDeleteNullDrink()
+        {
+
+
+            using var data = DatabaseMock.Instance;
+
+            string testId = "test1";
+
+            Drink drink = new Drink
+            {
+                Id = testId
+            };
+
+            Drink drink2 = new Drink
+            {
+                Id = "123"
+            };
+
+            data.Add(drink);
+            data.SaveChanges();
+            var drinkService = new DrinkService(data);
+            try
+            {
+                drinkService.DeleteDrink(drink2);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+
+            }
+
+
+
+
+
+
         }
 
 
@@ -85,12 +127,44 @@ namespace OnlineShop.Test.Services
             var drinkService = new DrinkService(data);
 
 
-          var result=  drinkService.EditDrink(drink);
+            var result = drinkService.EditDrink(drink);
 
-          Assert.IsType<DrinkFormModel>(result);
+            Assert.IsType<DrinkFormModel>(result);
 
-        } 
-        
+        }
+
+        [Fact]
+        public void EditDrinkShouldThrowExceptionWhenWeAttemptToEditNotExistingDrink()
+        {
+            using var data = DatabaseMock.Instance;
+
+
+            Drink drink = new Drink
+            {
+                Name = "asd"
+            };
+
+
+            Drink drink2 = new Drink
+            {
+                Name = "123"
+            };
+            data.Add(drink);
+            data.SaveChanges();
+            var drinkService = new DrinkService(data);
+
+
+            try
+            {
+                var result = drinkService.EditDrink(drink2);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+
+        }
+
         [Fact]
         public void SerchShouldReturnListWithItems()
         {
@@ -107,9 +181,9 @@ namespace OnlineShop.Test.Services
             var drinkService = new DrinkService(data);
 
 
-          var result=  drinkService.Serch("asd");
+            var result = drinkService.Serch("asd");
 
-          Assert.Equal(1,result.Count);
+            Assert.Equal(1, result.Count);
 
         }
 
@@ -198,15 +272,15 @@ namespace OnlineShop.Test.Services
 
 
             var result = drinkService.GetDrinkDetails("1");
-           var actual= result.Count();
+            var actual = result.Count();
 
-            Assert.Equal(1,actual);
+            Assert.Equal(1, actual);
 
         }
 
 
         [Fact]
-        public void GetDrinkDetailsShouldReturnNothing()
+        public void GetDrinkDetailsShouldReturnNothingWhenNullParam()
         {
             using var data = DatabaseMock.Instance;
 
@@ -239,6 +313,41 @@ namespace OnlineShop.Test.Services
             Assert.Equal(0, actual);
 
         }
+
+        [Fact]
+        public void GetDrinkDetailsShouldReturnNothingWhenNonExistingParam()
+        {
+            using var data = DatabaseMock.Instance;
+
+
+            Drink drink = new Drink
+            {
+                Id = "1",
+                Name = "asd"
+            };
+            Drink drink1 = new Drink
+            {
+                Id = "2",
+                Name = "bsd"
+            };
+            Drink drink2 = new Drink
+            {
+                Id = "3",
+                Name = "csd"
+            };
+            data.Add(drink);
+            data.Add(drink1);
+            data.SaveChanges();
+            var drinkService = new DrinkService(data);
+
+
+            var result = drinkService.GetDrinkDetails("3");
+            var actual = result.Count();
+
+            Assert.Equal(0, actual);
+
+        }
+
 
         [Fact]
         public void GetAllDrinksShouldReturnListWithItems()
@@ -276,7 +385,7 @@ namespace OnlineShop.Test.Services
 
         }
         [Fact]
-        public void GetAllDrinksShouldReturnNothing()
+        public void GetAllDrinksShouldReturnNothingWhenDbEmpty()
         {
             using var data = DatabaseMock.Instance;
 
@@ -309,13 +418,13 @@ namespace OnlineShop.Test.Services
                 ImageThumbnailUrl = null,
                 ImageUrl = null,
             };
-            var result=  drinkService.CreateDrink(drink);
+            var result = drinkService.CreateDrink(drink);
 
             Assert.IsType<Drink>(result);
-            Assert.Equal(1,data.Drinks.Count());
+            Assert.Equal(1, data.Drinks.Count());
 
         }
-
+       
 
         [Fact]
         public void GetDrinkCategoriesShouldReturnFalse()
@@ -333,7 +442,7 @@ namespace OnlineShop.Test.Services
                 ImageUrl = null,
             }; Drink drink2 = new Drink()
             {
-                Id="1",
+                Id = "1",
                 Name = "test",
                 Price = 11,
                 ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
@@ -368,5 +477,7 @@ namespace OnlineShop.Test.Services
 
 
         }
+
+        
     }
 }

@@ -116,7 +116,7 @@
                 return View(drink);
             }
 
-            var newDrink = service.CreateDrink(drink);
+            service.CreateDrink(drink);
 
             return RedirectToAction("AllDrinks", "Drinks");
         }

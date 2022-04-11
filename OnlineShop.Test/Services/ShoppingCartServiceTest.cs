@@ -43,11 +43,6 @@ namespace OnlineShop.Test.Services
             data.SaveChanges();
 
             cart.ShoppingCartId = "123";
-         
-
-
-
-
 
             var result = shoppingCartService.GetShoppingCartItems();
 
@@ -57,6 +52,7 @@ namespace OnlineShop.Test.Services
 
 
         }
+
 
         [Fact] public static void AddItemToCartShouldIncreaseValue()
         {
@@ -95,7 +91,38 @@ namespace OnlineShop.Test.Services
         }
 
         [Fact]
-        public static void RemoveItemFromCart()
+        public static void AddItemToCartShouldAddNewItemIfDoesNotExist()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "test",
+                Name = "test"
+            };
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "test"
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+            
+         shoppingCartService.AddToCart(drink2, 4);
+         Assert.Equal(1, data.ShoppingCartItems.Count());
+         Assert.Equal(1, data.ShoppingCartItems.Select(x=>x.Amount).ToList().FirstOrDefault());
+         
+        }
+
+        [Fact]
+        public static void RemoveItemFromCartShouldReturnvalidResult()
         {
             var data = DatabaseMock.Instance;
 
@@ -131,7 +158,45 @@ namespace OnlineShop.Test.Services
             var result = data.ShoppingCartItems;
 
 
-            Assert.Equal(1, data.ShoppingCartItems.Count());
+            Assert.Equal(1, result.Count());
+
+
+
+        }
+
+        [Fact]
+        public static void RemoveItemFromCartShouldRemoveNothingAndReturn0IfItemDoesNotExist()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "test",
+                Name = "test"
+            };
+
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "test"
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+
+
+
+          var result=  shoppingCartService.RemoveFromCart(drink2);
+
+
+
+            Assert.Equal(0, result);
 
 
 
@@ -359,6 +424,40 @@ namespace OnlineShop.Test.Services
 
 
 
+        }
+        [Fact]
+        public static void SelectDrinkShouldReturnNull()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "test",
+                Name = "test",
+                Price = 10
+            };
+
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "test",
+                Price = 20,
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+
+            var result = shoppingCartService.SelectedDrink(null);
+
+
+            Assert.Null(result);
+            
 
 
 
