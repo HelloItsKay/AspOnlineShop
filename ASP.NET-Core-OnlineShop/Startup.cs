@@ -46,7 +46,7 @@ namespace ASP.NET_Core_OnlineShop
 
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<OnlineShopDbContext>();
-
+            services.AddMemoryCache();
             services
                 .AddControllersWithViews(options =>
                 {
