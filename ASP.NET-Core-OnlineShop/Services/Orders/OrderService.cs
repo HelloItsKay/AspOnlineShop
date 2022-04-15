@@ -83,7 +83,7 @@ namespace ASP.NET_Core_OnlineShop.Services.Orders
             {
                 DrinkName = x.Drink.Name,
                 Amount = x.Amount,
-                Price = x.Price,
+                Price = (x.Price)*x.Amount,
                 OrderDate = data.Orders.Where(o => o.OrderId.Contains(x.OrderId)).Select(x => x.OrderPlaced).FirstOrDefault()
 
             }).OrderByDescending(x => x.OrderDate).ToList();

@@ -23,14 +23,14 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         }
         public IActionResult Index()
         {
-          //  var allDrinks = service.GetDrinksForCarosel();
+          
             var chacheDrinks = this.cache.Get<List<DrinksListingViewModel>>(LatestDrinkCacheKey);
             if (chacheDrinks==null)
             {
                 chacheDrinks = service.GetDrinksForCarosel().ToList();
               var  chachEntryOptions = new MemoryCacheEntryOptions()
                   .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
-              this.cache.Set(LatestDrinkCacheKey, chacheDrinks, chachEntryOptions);
+            this.cache.Set(LatestDrinkCacheKey, chacheDrinks, chachEntryOptions);
             }
             return View(chacheDrinks);
 
