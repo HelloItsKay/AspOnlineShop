@@ -17,8 +17,8 @@ namespace OnlineShop.Test.Mocks
             {
                 get
                 {
-                    var homeServiceMoq = new Mock<IHashingService>();
-                    return homeServiceMoq.Object;
+                    var hashingService = new Mock<IHashingService>();
+                    return hashingService.Object;
                 }
 
             }
