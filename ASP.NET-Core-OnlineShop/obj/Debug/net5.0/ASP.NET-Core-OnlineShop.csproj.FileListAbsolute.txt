@@ -781,7 +781,6 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ref\ASP.NET-Core-OnlineShop.dll
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.pdb
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.genruntimeconfig.cache
-C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\Add.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\AllDrinks.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\AlcoholicDrinks.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\NonAlcoholicDrinks.cshtml.g.cs
@@ -792,7 +791,6 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Drinks\Edit.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
@@ -1301,3 +1299,9 @@ C:\Users\krust\source\repos\AspOnlineShop-v4\ASP.NET-Core-OnlineShop\obj\Debug\n
 C:\Users\krust\source\repos\AspOnlineShop-v4\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\ASP.NET-Core-OnlineShop.genruntimeconfig.cache
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\About\AboutUs.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Order\EmptyCart.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\_Viewimports.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Drinks\Add.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Shared\_StylesLoader.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Drinks\Edit.cshtml.g.cs

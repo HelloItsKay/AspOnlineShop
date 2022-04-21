@@ -1,4 +1,6 @@
-﻿namespace ASP.NET_Core_OnlineShop.Services.Drinks
+﻿using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
+
+namespace ASP.NET_Core_OnlineShop.Services.Drinks
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -19,54 +21,6 @@
         public Drink GetDrinkById(string id)
         {
             return data.Drinks.Where(d => d.Id == id).FirstOrDefault();
-        }
-
-        public void DeleteDrink(Drink drink)
-        {
-            foreach (var element in data.ShoppingCartItems)
-            {
-                if (element.Drink.Id.Equals(drink.Id))
-                {
-                    data.ShoppingCartItems.Remove(element);
-                }
-            }
-
-            data.Drinks.Remove(drink);
-            data.SaveChanges();
-        }
-
-        public DrinkFormModel EditDrink(Drink drink)
-        {
-            return new DrinkFormModel
-            {
-                Id = drink.Id,
-                Name = drink.Name,
-                Price = drink.Price,
-                ShortDescription = drink.ShortDescription,
-                LongDescription = drink.LongDescription,
-                CategoryId = drink.CategoryId,
-                ImageThumbnailUrl = drink.ImageThumbnailUrl,
-                ImageUrl = drink.ImageUrl
-            };
-        }
-
-        public Drink EditDrinkPost(DrinkFormModel drink)
-        {
-            var edit = data.Drinks.Where(d => d.Id == drink.Id).Select(d => new Drink
-            {
-                Id = drink.Id,
-                Name = drink.Name,
-                Price = drink.Price,
-                ShortDescription = drink.ShortDescription,
-                LongDescription = drink.LongDescription,
-                CategoryId = drink.CategoryId,
-                ImageThumbnailUrl = drink.ImageThumbnailUrl,
-                ImageUrl = drink.ImageUrl
-            }).FirstOrDefault();
-
-            data.Drinks.Update(edit);
-            data.SaveChanges();
-            return edit;
         }
 
         public List<DrinksListingViewModel> Serch(string serchingTerm)
@@ -129,19 +83,19 @@
 
         public List<DrinksListingViewModel> GetAlchoholDrinks()
         {
-          return    data
-                  .Drinks
-                  .OrderByDescending(d => d.Id)
-                  .Where(d => d.Category.CategoryName == "Alcoholic")
-                  .Select(d => new DrinksListingViewModel
-                  {
-                      Id = d.Id,
-                      Name = d.Name,
-                      ImageThumbnailUrl = d.ImageThumbnailUrl,
-                      Price = d.Price,
-                      ShortDescription = d.ShortDescription
-                  }).ToList();
-             
+            return data
+                    .Drinks
+                    .OrderByDescending(d => d.Id)
+                    .Where(d => d.Category.CategoryName == "Alcoholic")
+                    .Select(d => new DrinksListingViewModel
+                    {
+                        Id = d.Id,
+                        Name = d.Name,
+                        ImageThumbnailUrl = d.ImageThumbnailUrl,
+                        Price = d.Price,
+                        ShortDescription = d.ShortDescription
+                    }).ToList();
+
         }
 
         public List<DrinksListingViewModel> GetAllNonAlchoholDrinks()
@@ -161,6 +115,23 @@
                 }).ToList();
         }
 
+        public IEnumerable<DrinksCategoryServiceModel> GetDrinkCategories()
+        {
+
+            return data.Categories
+                     .Select(drink => new DrinksCategoryServiceModel
+                     {
+                         Id = drink.Id,
+                         Name = drink.CategoryName
+                     }).ToList();
+        }
+
+        public bool DoesCategoryExist(DrinkFormModel drink)
+        {
+            return data.Categories.Any(d => d.Id == drink.CategoryId);
+        }
+
+        //Admin Identity User
         public Drink CreateDrink(DrinkFormModel drink)
         {
             var newDrink = new Drink
@@ -180,21 +151,54 @@
 
             return newDrink;
         }
-
-        public IEnumerable<DrinksCategoryServiceModel> GetDrinkCategories()
+        public Drink EditDrinkPost(DrinkFormModel drink)
         {
+            var edit = data.Drinks.Where(d => d.Id == drink.Id).Select(d => new Drink
+            {
+                Id = drink.Id,
+                Name = drink.Name,
+                Price = drink.Price,
+                ShortDescription = drink.ShortDescription,
+                LongDescription = drink.LongDescription,
+                CategoryId = drink.CategoryId,
+                ImageThumbnailUrl = drink.ImageThumbnailUrl,
+                ImageUrl = drink.ImageUrl
+            }).FirstOrDefault();
 
-            return data.Categories
-                     .Select(drink => new DrinksCategoryServiceModel
-                     {
-                         Id = drink.Id,
-                         Name = drink.CategoryName
-                     }).ToList();
+            data.Drinks.Update(edit);
+            data.SaveChanges();
+            return edit;
         }
 
-        public bool DoesCategoryExist(DrinkFormModel drink)
+        public void DeleteDrink(Drink drink)
         {
-            return data.Categories.Any(d => d.Id == drink.CategoryId);
+            foreach (var element in data.ShoppingCartItems)
+            {
+                if (element.Drink.Id.Equals(drink.Id))
+                {
+                    data.ShoppingCartItems.Remove(element);
+                }
+            }
+
+            data.Drinks.Remove(drink);
+            data.SaveChanges();
         }
+
+        public DrinkFormModel EditDrink(Drink drink)
+        {
+            return new DrinkFormModel
+            {
+                Id = drink.Id,
+                Name = drink.Name,
+                Price = drink.Price,
+                ShortDescription = drink.ShortDescription,
+                LongDescription = drink.LongDescription,
+                CategoryId = drink.CategoryId,
+                ImageThumbnailUrl = drink.ImageThumbnailUrl,
+                ImageUrl = drink.ImageUrl
+            };
+        }
+
+
     }
 }

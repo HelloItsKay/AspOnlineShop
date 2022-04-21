@@ -30,8 +30,8 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole(AdministratorRoleName))
         {
 
-            <li class="nav-item">
-                <a class="btn btn-success " asp-area="" asp-controller="Drinks" asp-action="Add">Add Drink</a>
+            <li class="nav-item" href="/" >
+                <a class="btn btn-success " asp-area="Admin" asp-controller="Drinks" asp-action="Add">Add Drink</a>
             </li>
 
         }

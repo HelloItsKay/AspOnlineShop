@@ -1,4 +1,5 @@
 
+using ASP.NET_Core_OnlineShop.Areas.Admin.Controllers;
 using ASP.NET_Core_OnlineShop.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +7,7 @@ namespace ASP.NET_Core_OnlineShop
 {
     using Data;
     using ASP.NET_Core_OnlineShop.Data.Models;
-    using Infrastructure;
+    using ASP.NET_Core_OnlineShop.Infrastructure;
     using Services.Drinks;
     using Services.Home;
     using Services.Orders;
@@ -87,6 +88,7 @@ namespace ASP.NET_Core_OnlineShop
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
+                    endpoints.MapDefaultAreaRoute();
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
 

@@ -15,8 +15,8 @@
                     <h5 class="card-body"> @drink.ShortDescription </h5>
                     @if (User.Identity.IsAuthenticated && User.IsInRole(AdministratorRoleName))
                     {
-                        <a asp-controller="Drinks" asp-action="Edit" asp-route-id="@drink.Id" class="btn btn-warning">Edit</a>
-                        <a asp-controller="Drinks" asp-action="Delete" asp-route-id="@drink.Id" class="btn btn-danger">Delete</a>
+                        <a asp-area="Admin" asp-controller="Drinks" asp-action="Edit" asp-route-id="@drink.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="Admin"  asp-controller="Drinks" asp-action="Delete" asp-route-id="@drink.Id" class="btn btn-danger">Delete</a>
                     }
                     <p class="button ">
                     <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@drink.Id">
