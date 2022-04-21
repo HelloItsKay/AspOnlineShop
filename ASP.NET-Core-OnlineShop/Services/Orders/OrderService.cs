@@ -81,6 +81,8 @@ namespace ASP.NET_Core_OnlineShop.Services.Orders
 
             return data.OrderDetails.Where(x => myOrdersId.Contains(x.OrderId)).Select(x => new MyOrdersViewModel
             {
+                ImageUrl = x.Drink.ImageThumbnailUrl,
+                Category = x.Drink.Category.CategoryName,
                 DrinkName = x.Drink.Name,
                 Amount = x.Amount,
                 Price = (x.Price)*x.Amount,

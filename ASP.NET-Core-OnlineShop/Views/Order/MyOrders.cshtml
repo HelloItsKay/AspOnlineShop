@@ -1,55 +1,70 @@
 ﻿@model List<MyOrdersViewModel>
 
-<div class="row checkoutForm">
-    <h2>This is your orders history. Here you can find all drinks you bought over the time.</h2>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th> Amount</th>
-                <th>Drink Name</th>
-                <th class="text-right">Price</th>
-                <th class="text-right">Order Date</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+<head>
+    <link rel="stylesheet" href="~/css/MyOrders.css">
+</head>
+<div class="cart_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cart_container">
+                    <div class="cart_title">Order History<small> ( @Model.Count items bought) </small></div>
+                    <div class="cart_items">
+                        @foreach (var item in Model)
+
+                        {
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <div class="cart_item_image"><img src="@item.ImageUrl" alt=""></div>
+                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                        <div class="cart_item_name cart_info_col">
+                                            <div class="cart_item_title">Name</div>
+                                            <div class="cart_item_text">@item.DrinkName</div>
+                                        </div>
+                                        <div class="cart_item_color cart_info_col">
+                                            <div class="cart_item_title">Type</div>
+                                            <div class="cart_item_text">@item.Category</div>
+                                        </div>
+                                        <div class="cart_item_quantity cart_info_col">
+                                            <div class="cart_item_title">Quantity</div>
+                                            <div class="cart_item_text">@item.Amount</div>
+                                        </div>
+                                        <div class="cart_item_price cart_info_col">
+                                            <div class="cart_item_title">Price</div>
+                                            <div class="cart_item_text">@item.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</div>
+                                        </div>
+                                        <div class="cart_item_total cart_info_col">
+                                            <div class="cart_item_title">Purchase date</div>
 
 
-            @foreach (var line in Model)
-            {
-                <tr>
-                    <td class="text-center">@line.Amount</td>
-                    <td class="text-left">@line.DrinkName</td>
-                    <td class="text-right">@line.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</td>
-                    <td class="text-right">@line.OrderDate</td>
+                                            <div class="cart_item_text">@item.OrderDate </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="order_total">
+                        <div class="order_total_content text-md-right">
+                            @{
+                                decimal total = 0;
 
-                </tr>
-}
-        </tbody>
-        <tfoot>
-            <tr>
+                                @foreach (var item in Model)
+                                {
+                                    total += item.Price;
+                                }
+                                <div class="order_total_title font-weight-bold">Total money spend so far</div>
 
-                @{
-                    decimal total = 0;
+                                <div class="order_total_amount"> @total.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</div>
+                            }
 
-                    @foreach (var item in Model)
-                    {
-                        total += item.Price;
-                    }
-                    <td colspan="3" class="text-right">Total money spend so far: </td>
+                        </div>
+                    </div>
+                    <a  class="btn-primary cart_button_checkout " asp-controller="Drinks" asp-action="AllDrinks">Back to shopping</a>
 
-                    <td class="text-right">
-                       @total.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))
-                    </td>
-                }
-            </tr>
-        </tfoot>
-    </table>
-
-    <div class="text-right">
-        <div class="btn-group ">
-            <a class="btn-group">
-            </a>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
