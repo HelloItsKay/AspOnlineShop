@@ -77,7 +77,9 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
                      Name = d.Name,
                      ImageThumbnailUrl = d.ImageThumbnailUrl,
                      Price = d.Price,
-                     ShortDescription = d.ShortDescription
+                     ShortDescription = d.ShortDescription,
+                     Category = d.Category.CategoryName
+
                  }).ToList();
         }
 
@@ -93,7 +95,8 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
                         Name = d.Name,
                         ImageThumbnailUrl = d.ImageThumbnailUrl,
                         Price = d.Price,
-                        ShortDescription = d.ShortDescription
+                        ShortDescription = d.ShortDescription,
+                        Category = d.Category.CategoryName
                     }).ToList();
 
         }
@@ -111,7 +114,8 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
                     Name = d.Name,
                     ImageThumbnailUrl = d.ImageThumbnailUrl,
                     Price = d.Price,
-                    ShortDescription = d.ShortDescription
+                    ShortDescription = d.ShortDescription,
+                    Category = d.Category.CategoryName
                 }).ToList();
         }
 
@@ -172,13 +176,23 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
 
         public void DeleteDrink(Drink drink)
         {
-            foreach (var element in data.ShoppingCartItems)
+
+            var test = data.ShoppingCartItems.Where(s=>s.Drink.Id==drink.Id).ToList();
+
+            if (test.Count>0)
             {
-                if (element.Drink.Id.Equals(drink.Id))
+                foreach (var element in test)
                 {
-                    data.ShoppingCartItems.Remove(element);
+
+                    if (element.Drink.Id.Equals(drink.Id))
+                    {
+                        data.ShoppingCartItems.Remove(element);
+                    }
                 }
+
             }
+
+
 
             data.Drinks.Remove(drink);
             data.SaveChanges();

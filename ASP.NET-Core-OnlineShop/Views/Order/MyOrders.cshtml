@@ -1,5 +1,5 @@
 ﻿@model List<MyOrdersViewModel>
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <head>
     <link rel="stylesheet" href="~/css/MyOrders.css">
 </head>
@@ -8,7 +8,8 @@
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
-                    <div class="cart_title">Order History<small> ( @Model.Count items bought) </small></div>
+
+                    <div class="cart_title">Orders History<small>  </small></div>
                     <div class="cart_items">
                         @foreach (var item in Model)
 
@@ -56,15 +57,18 @@
                                 <div class="order_total_title font-weight-bold">Total money spend so far</div>
 
                                 <div class="order_total_amount"> @total.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</div>
+
                             }
 
                         </div>
                     </div>
-                    <a  class="btn-primary cart_button_checkout " asp-controller="Drinks" asp-action="AllDrinks">Back to shopping</a>
+
+
+                    <a class="btn btn-primary cart_button_checkout" asp-action="AllDrinks" asp-controller="Drinks">Back to shopping</a>
 
                 </div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 </div>

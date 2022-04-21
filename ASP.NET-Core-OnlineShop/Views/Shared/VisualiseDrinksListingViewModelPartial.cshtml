@@ -1,29 +1,66 @@
 ﻿
 @model List<DrinksListingViewModel>
-<div class="row">
-    @foreach (var drink in Model)
-    {
+<head>
+    <link rel="stylesheet" href="~/css/DrinkListing.css">
+</head>
 
-        <div class="body col-md-3">
-            <div class="card">
-                <img class="card-img-top" src="@drink.ImageThumbnailUrl" alt="@drink.Name @drink.Price @drink.ShortDescription">
-                <div class="card-body">
-                    <h2 class="card-title">
-                        <a asp-controller="Drinks" asp-action="Details" asp-route-id="@drink.Id">@drink.Name</a>
-                        @drink.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))
-                    </h2>
-                    <h5 class="card-body"> @drink.ShortDescription </h5>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole(AdministratorRoleName))
-                    {
-                        <a asp-area="Admin" asp-controller="Drinks" asp-action="Edit" asp-route-id="@drink.Id" class="btn btn-warning">Edit</a>
-                        <a asp-area="Admin"  asp-controller="Drinks" asp-action="Delete" asp-route-id="@drink.Id" class="btn btn-danger">Delete</a>
-                    }
-                    <p class="button ">
-                    <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@drink.Id">
-                        Add to cart
-                    </a>
+<div class="container-fluid mt-50">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-4">
+                <div class="product-card mb-30">
+                    <a class="product-thumb" href="#" data-abc="true"><img src="@item.ImageThumbnailUrl" alt="Product"></a>
+                    <div class="product-card-body">
+                        
+                        @if (@item.Category.Equals("Alcoholic"))
+                        {
+                        <div class="product-category "><a  href="#" style="color:#dc3545" data-abc="true">@item.Category</a></div>
+                        }
+                        else
+                        {
+                            <div class="product-category "><a  href="#" style="color:green" data-abc="true">@item.Category</a></div>
+                        }
+
+                        
+                        <h3 class="product-title"><a asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true">@item.Name</a></h3>
+                        <h4 class="product-price">@item.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</h4>
+                    </div>
+                    <div class="product-button-group">
+
+                        @if (User.IsInRole(AdministratorRoleName) && User.Identity.IsAuthenticated)
+                        {
+                            <a asp-area="Admin"  asp-controller="Drinks" asp-action="Delete" asp-route-id="@item.Id" class="product-button btn-outline-danger data-abc="true">
+                                <button class="btn btn">Delete</button>
+                            </a>
+                            <a asp-area="Admin" asp-controller="Drinks" asp-action="Edit" asp-route-id="@item.Id" class="product-button btn-outline-warning  data-abc="true">
+                                <button class="btn btn">Edit</button>
+                            </a>
+                            <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@item.Id" class="product-button btn-outline-success data-abc="true">
+                                <button class="btn btn">Buy</button>
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a class="product-button btn-outline-success id=" cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@item.Id" data-abc="true">
+                                <button class="btn btn">Buy</button>
+                            </a>
+
+
+                        }
+
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+
+
+
+
+
+        }
+    </div>
 </div>
