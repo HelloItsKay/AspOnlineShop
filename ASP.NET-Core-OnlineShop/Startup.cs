@@ -1,4 +1,5 @@
 
+using ASP.NET_Core_OnlineShop.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NET_Core_OnlineShop
@@ -58,6 +59,8 @@ namespace ASP.NET_Core_OnlineShop
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IHomeService, HomeService>();
             services.AddTransient<IDrinkService, DrinkService>();
+            services.AddTransient<IHashingService, HashingService>();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

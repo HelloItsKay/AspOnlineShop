@@ -1,4 +1,5 @@
 ﻿using ASP.NET_Core_OnlineShop.Models.Orders;
+using ASP.NET_Core_OnlineShop.Services;
 
 namespace ASP.NET_Core_OnlineShop.Controllers
 {
@@ -13,11 +14,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
     {
         private readonly IOrderService orderService;
         private readonly IShoppingCartService shoppingCartService;
+        private readonly IHashingService hashingService;
 
-        public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService)
+        public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService, IHashingService hashingService)
         {
             this.orderService = orderService;
             this.shoppingCartService = shoppingCartService;
+            this.hashingService = hashingService;
         }
 
         [Authorize]
@@ -55,6 +58,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [Authorize]
         public IActionResult MyOrders(string username)
         {
+            username = hashingService.Decrypt(username);
             List<string> orderId = orderService.GetMyOrderId(username);
 
             var myOrders = orderService.MyOrders(orderId);
