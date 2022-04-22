@@ -43,13 +43,16 @@
         public const int ZipCodeMaxLength = 10;
 
         public const int StateMaxLength = 10;
+        public const int StateMinLength = 4;
 
         public const string CountryErrorMassage = "Please enter your country";
         public const string DisplayPhoneName = "Phone number";
         public const int CountryMaxLength = 50;
+        public const int CountryMinLength = 4;
 
         public const string PhoneErrorMassage = "Please enter your phone number";
         public const int PhoneNumberMaxLength = 50;
+        public const int PhoneNumberMinLength = 7;
 
         public const int EmailMaxLength = 50;
         public const string EmailErrorMassage = "The email address is not entered in a correct format";

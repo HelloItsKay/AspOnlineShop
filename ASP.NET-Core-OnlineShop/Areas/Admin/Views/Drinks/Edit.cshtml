@@ -1,64 +1,87 @@
 ﻿@model DrinkFormModel
 
 @{
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "Edit Drink";
-    Layout = "_Layout";
+
 }
 
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="~/css/Edit.css">
+    <script src="	https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
 <form method="post">
-    <div class="container offset-3 col-6">
-        <h2>Edit Drink</h2>
-        <div class="form-group">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" placeholder="Drink name">
 
-            <span asp-validation-for="Name" class="small text-danger"></span>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-6">
+                <h3 align="center">Eddit</h3>
+                <div class="card px-5 py-5" id="form1">
+
+                    <div class="form-data" v-if="!submitted">
+                        <div class="forms-inputs mb-4">
+                            <span>Enter drink name</span>
+                            <input asp-for="Name" class="form-control">
+                        </div>
+                        <span asp-validation-for="Name" class="small text-danger"></span>
+                        <p></p>
+
+                        <div class="forms-inputs mb-4">
+                            <span>Enter short description</span>
+                            <p></p>
+                            <textarea asp-for="ShortDescription" rows="5" class="form-control"></textarea>
+                        </div>
+                        <span asp-validation-for="ShortDescription" class="small text-danger"></span>
+                        <p></p>
+
+                        <div class="forms-inputs mb-4">
+                            <span>Enter long description</span>
+                            <textarea asp-for="LongDescription" rows="5" class="form-control"></textarea>
+                        </div>
+                        <span asp-validation-for="LongDescription" class="small text-danger"></span>
+                        <p></p>
+                        <div class="forms-inputs mb-4">
+                            <span>Price</span>
+                            <input asp-for="Price" class="form-control">
+                        </div>
+                        <p></p>
+                        <span asp-validation-for="Price" class="small text-danger"></span>
+
+                        <div class="forms-inputs mb-4">
+                            <span>Category</span>
+                            <select asp-for="CategoryId" class="form-control">
+                                @foreach (var category in Model.Categories)
+                                {
+                                <option value="@category.Id">@category.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <p></p>
+                        <div class="forms-inputs mb-4">
+                            <span>Image Url</span>
+                            <input asp-for="ImageThumbnailUrl" class="form-control">
+                        </div>
+                        <span asp-validation-for="ImageThumbnailUrl" class="small text-danger"></span>
+                        <p></p>
+                        <div class="forms-inputs mb-4">
+                            <span>Image Url</span>
+                            <input asp-for="ImageUrl" class="form-control">
+                        </div>
+                        <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+                        <input class="btn btn-dark w-100" type="submit" value="Eddit">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="ShortDescription"></label>
-            <textarea asp-for="ShortDescription" rows="4" class="form-control" placeholder="ShortDescription"></textarea>
-
-            <span asp-validation-for="ShortDescription" class="small text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="LongDescription"></label>
-            <textarea asp-for="LongDescription" rows="4" class="form-control" placeholder="LongDescription "></textarea>
-            <span asp-validation-for="LongDescription" class="small text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Price"></label>
-            <input asp-for="Price" class="form-control" placeholder="Price">
-            <span asp-validation-for="Price" class="small text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="CategoryId"></label>
-            <select asp-for="CategoryId" class="form-control">
-                @foreach (var category in Model.Categories)
-                {
-                    <option value="@category.Id">@category.Name</option>
-                }
-            </select>
-            <span asp-validation-for="CategoryId" class="small text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="ImageUrl"></label>
-            <input asp-for="ImageUrl" class="form-control" placeholder="ImageUrl">
-            <span asp-validation-for="ImageUrl" class="small text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ImageThumbnailUrl"></label>
-            <input asp-for="ImageThumbnailUrl" class="form-control" placeholder="ImageThumbnailUrl">
-            <span asp-validation-for="ImageThumbnailUrl" class="small text-danger"></span>
-        </div>
-
-        <input class="btn btn-primary float-right" type="submit" value="Save">
     </div>
-
-
 </form>
+
 @section Scripts{
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }

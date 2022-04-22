@@ -1,20 +1,40 @@
 ﻿@model IQueryable<DrinksListingViewModel>
+    <head>
+        <link rel="stylesheet" href="~/css/DrinkListing.css">
+    </head>
+<div class="container-fluid mt-50" style="position: center">
+<div class="row" style="position: center">
+    @foreach (var item in Model)
+    {
 
-@foreach (var Model in Model)
-{
-<div class="body col-md-4">
-    <div class="card">
-        <img class="card-img-top"  src="@Model.ImageUrl" alt="@Model.Name  @Model.LongDescription">
-        <div class="card-body">
+        <div class="col-md-4 align-middle">
+            <div class="product-card mb-30">
+                <a class="product-thumb" asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true" data-abc="true"><img src="@item.ImageUrl" alt="Product"></a>
+                <div class="product-card-body">
 
-            <h5 class="card-body"> @Model.LongDescription </h5>
 
+                    <div class="product-category "><a style="color:#dc3545" data-abc="true">@item.Category</a></div>
+
+
+
+                    <h3 class="product-title"><a asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true">@item.Name</a></h3>
+
+                    <h6 class="product-title"><h6 data-abc="true">@item.LongDescription</h6></h6>
+
+                </div>
+                <div class="product-button-group">
+
+                
+                        <a class="product-button btn-outline-success id=" cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@item.Id" data-abc="true">
+                            <button class="btn btn">Buy</button>
+                        </a>
+
+
+                </div>
+            </div>
         </div>
-        <p class="button ">
-        <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@Model.Id">
-            Add to cart
-        </a>
-    </div>
-</div>
-}
 
+
+    }
+</div>
+</div>

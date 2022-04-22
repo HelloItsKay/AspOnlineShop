@@ -1302,6 +1302,6 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\_Viewimports.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Drinks\Add.cshtml.g.cs
-C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Views\Shared\_StylesLoader.cshtml.g.cs
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Drinks\Edit.cshtml.g.cs
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\ASP.NET-Core-OnlineShop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutAdmin.cshtml.g.cs

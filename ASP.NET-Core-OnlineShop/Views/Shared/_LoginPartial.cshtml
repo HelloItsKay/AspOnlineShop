@@ -1,49 +1,65 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ASP.NET_Core_OnlineShop.Data.Models
 @using ASP.NET_Core_OnlineShop.Services
+@using ASP.NET_Core_OnlineShop.Services.ShoppingCart
 @using Microsoft.AspNetCore.Http
 @inject IHashingService hashingService
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+@inject IShoppingCartService shoppingCartService
 
 
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head> 
 <ul class="navbar-nav">
-   @if (SignInManager.IsSignedIn(User))
-   {
-       if (User.Identity.IsAuthenticated)
-       {
-            
-           <li class="nav-item">
-               <a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="MyCart">MyCart</a>
-           </li>
-
-           <li class="nav-item">
-
-               <a class="nav-link" asp-area="" asp-controller="Order" asp-action="MyOrders" asp-route-username="@hashingService.Encrypt(User.Identity.Name)">Orders history</a>
-
-           </li>
-       }
-   }
-    
     @if (SignInManager.IsSignedIn(User))
-    {   
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+
+            <li class="nav-item">  
+                <a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="MyCart">MyCart <i class="fa fa-shopping-cart" style="font-size: 15px; color: orange">
+                     @shoppingCartService.GetShoppingCartItems().Where(x => x.Amount == x.Amount).Select(x => x.Amount).ToList().Sum()
+                </i></a>
+            </li>
+
+            <li class="nav-item">
+
+                <a class="nav-link" asp-area="" asp-controller="Order" asp-action="MyOrders" asp-route-username="@hashingService.Encrypt(User.Identity.Name)">Orders history</a>
+
+            </li>
+        }
+    }
+
+    @if (SignInManager.IsSignedIn(User))
+    {
         @if (User.Identity.IsAuthenticated && User.IsInRole(AdministratorRoleName))
         {
 
-            <li class="nav-item" href="/" >
+            <li class="nav-item" href="/">
                 <a class="nav-link" style="color: orange" asp-area="Admin" asp-controller="Drinks" asp-action="Add">Add Drink</a>
             </li>
 
         }
 
+
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
         </li>
+
+
+
         <li class="nav-item">
             <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="btn nav-link" style="color: red">Logout</button>
+                <button type="submit" class="btn nav-link align-middle" style="color: red; height: 20px">Logout</button>
             </form>
         </li>
+
+
+       
+
+
     }
     else
     {

@@ -38,16 +38,17 @@ namespace ASP.NET_Core_OnlineShop.Models.Orders
         [Display(Name = ZipCodeDisplayName)]
         [StringLength(ZipCodeMaxLength, MinimumLength = ZipCodeMinLength)]
         public string ZipCode { get; set; }
-
+        [MinLength(StateMinLength)]
         [StringLength(StateMaxLength)]
         public string State { get; set; }
 
         [Required(ErrorMessage = CountryErrorMassage)]
+        [MinLength(CountryMinLength)]
         [StringLength(CountryMaxLength)]
         public string Country { get; set; }
 
         [Required(ErrorMessage = PhoneErrorMassage)]
-        [MinLength(5)]
+        [MinLength(PhoneNumberMinLength)]
         [StringLength(PhoneNumberMaxLength)]
         [Display(Name = DisplayPhoneName)]
         public string PhoneNumber { get; set; }

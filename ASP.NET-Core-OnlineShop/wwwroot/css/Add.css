@@ -1,0 +1,61 @@
+﻿.navbar-collapse {
+    align-items: center;
+    width: 80%;
+}
+
+.card {
+    border: none;
+    height: 30%;
+    margin-bottom: 10%
+}
+
+
+.forms-inputs {
+    position: center
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #23272b;
+}
+
+    .btn-dark:hover {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+
+.forms-inputs span {
+    position: center;
+    top: -18px;
+    left: 10px;
+    background-color: #fff;
+    padding: 5px 10px;
+    font-size: 15px
+}
+
+.forms-inputs input {
+    height: 50px;
+    border: 2px solid #eee
+}
+
+.forms-inputs input:focus {
+    box-shadow: none;
+    outline: none;
+    border: 2px solid #000
+}
+
+.btn {
+    height: 50px
+}
+
+.success-data {
+    display: flex;
+    flex-direction: column
+}
+
+.bxs-badge-check {
+    font-size: 90px
+}

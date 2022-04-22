@@ -1,4 +1,5 @@
-﻿using ASP.NET_Core_OnlineShop.Models.Orders;
+﻿using System.Linq;
+using ASP.NET_Core_OnlineShop.Models.Orders;
 using ASP.NET_Core_OnlineShop.Services;
 
 namespace ASP.NET_Core_OnlineShop.Controllers
@@ -35,6 +36,8 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         {
             order.Email = User.Identity.Name;
             var items = shoppingCartService.GetShoppingCartItems();
+
+
             if (items.Count == 0)
             {
                 return RedirectToAction("EmptyCart");
@@ -67,6 +70,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
         public IActionResult EmptyCart()
         {
+            var cartItemsCount = shoppingCartService.GetShoppingCartItems().Where(x => x.Amount == x.Amount)
+                .Select(x => x.Amount).ToList().Sum();
+
+            if (cartItemsCount>0)
+            {
+                return Redirect("~/ShoppingCart/MyCart");
+            }
             return View();
         }
     }
