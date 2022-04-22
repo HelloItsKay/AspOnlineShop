@@ -13,12 +13,12 @@
                 <div class="product-card mb-30">
                     <a class="product-thumb" href="#" data-abc="true"><img src="@item.ImageThumbnailUrl" alt="Product"></a>
                     <div class="product-card-body">
-                        
-                      
-                        <div class="product-category "><a  href="#" style="color:#dc3545" data-abc="true">@item.Category</a></div>
 
 
-                        
+                        <div class="product-category "><a href="#" style="color:#dc3545" data-abc="true">@item.Category</a></div>
+
+
+
                         <h3 class="product-title"><a asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true">@item.Name</a></h3>
                         <h4 class="product-price">@item.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</h4>
                     </div>
@@ -26,10 +26,10 @@
 
                         @if (User.IsInRole(AdministratorRoleName) && User.Identity.IsAuthenticated)
                         {
-                            <a asp-area="Admin"  asp-controller="Drinks" asp-action="Delete" asp-route-id="@item.Id" class="product-button btn-outline-danger data-abc="true">
+                            <a asp-area="Admin" asp-controller="Drinks" asp-action="Delete" asp-route-id="@item.Id" class="product-button btn-outline-danger data-abc="true">
                                 <button class="btn btn">Delete</button>
                             </a>
-                            <a asp-area="Admin" asp-controller="Drinks" asp-action="Edit" asp-route-id="@item.Id" class="product-button btn-outline-warning  data-abc="true">
+                            <a asp-area="Admin" asp-controller="Drinks" asp-action="Edit" asp-route-id="@item.Id" class="product-button btn-outline-warning data-abc="true">
                                 <button class="btn btn">Edit</button>
                             </a>
                             <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-drinkId="@item.Id" class="product-button btn-outline-success data-abc="true">
@@ -43,18 +43,13 @@
                                 <button class="btn btn">Buy</button>
                             </a>
 
-
                         }
-
 
 
                     </div>
                 </div>
             </div>
-
-
-
-
+            
 
         }
     </div>

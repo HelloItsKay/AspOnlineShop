@@ -17,6 +17,7 @@
                 <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                     <li class="nav-item"> <a class="nav-link" asp-controller="About" asp-action="AboutUs" class="btn btn-danger">Contact</a> </li>
                     <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"> Drinks </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="NonAlcoholicDrinks" asp-route-category="">Non-alcoholic drinks</a></li>
@@ -26,13 +27,14 @@
                             </li>
                             <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AllDrinks" asp-route-category="">All Drinks</a></li>
                         </ul>
-
+                    <li class="nav-item dropdown">
                     </li>
                     <form class="navbar-form form-inline my-2 my-lg-0" asp-controller="Drinks" asp-action="Serch" method="get">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search for a drink" name="serchingTerm" value="@ViewData["serchingTerm"]">
                         </div>
                     </form>
+
                 </ul>
                 <partial name="_LoginPartial"/>
 
@@ -47,9 +49,11 @@
 </div>
 
 <footer class="border-top footer text-muted">
-    <div class="container">
-        &copy;Made by Krustyo Petrov 2022 - <a asp-area="" asp-controller="About" asp-action="AboutUs">Our Contacts and Locations</a>
-    </div>
+    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 fixed-bottom">
+        <div class="container text-center">
+            <small>Made by Krustyo Petrov</small>
+        </div>
+    </footer>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

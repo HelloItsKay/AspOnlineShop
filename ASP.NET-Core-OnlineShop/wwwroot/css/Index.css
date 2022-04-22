@@ -1,4 +1,8 @@
-﻿
+﻿.btn-info {
+    color: #fff;
+    background-color: #c21b80;
+    border-color: #1861ac;
+}
 .container {
     margin-top: 2%;
     margin-bottom: 2%
