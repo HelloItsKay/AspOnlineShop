@@ -23,7 +23,8 @@
                       ImageThumbnailUrl = d.ImageThumbnailUrl,
                       Price = d.Price,
                       Category = d.Category.CategoryName,
-                      ShortDescription = d.ShortDescription
+                      ShortDescription = d.ShortDescription,
+                      Id = d.Id,
                   }).Reverse().ToList();
         }
     }

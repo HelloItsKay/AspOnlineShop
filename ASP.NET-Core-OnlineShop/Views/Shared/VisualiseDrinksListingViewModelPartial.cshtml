@@ -14,14 +14,9 @@
                     <a class="product-thumb" href="#" data-abc="true"><img src="@item.ImageThumbnailUrl" alt="Product"></a>
                     <div class="product-card-body">
                         
-                        @if (@item.Category.Equals("Alcoholic"))
-                        {
+                      
                         <div class="product-category "><a  href="#" style="color:#dc3545" data-abc="true">@item.Category</a></div>
-                        }
-                        else
-                        {
-                            <div class="product-category "><a  href="#" style="color:green" data-abc="true">@item.Category</a></div>
-                        }
+
 
                         
                         <h3 class="product-title"><a asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true">@item.Name</a></h3>

@@ -14,12 +14,12 @@
        {
             
            <li class="nav-item">
-               <a class="btn btn-info " asp-area="" asp-controller="ShoppingCart" asp-action="MyCart">My Cart</a>
+               <a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="MyCart">MyCart</a>
            </li>
 
            <li class="nav-item">
 
-               <a class="btn btn-info " asp-area="" asp-controller="Order" asp-action="MyOrders" asp-route-username="@hashingService.Encrypt(User.Identity.Name)">Orders history</a>
+               <a class="nav-link" asp-area="" asp-controller="Order" asp-action="MyOrders" asp-route-username="@hashingService.Encrypt(User.Identity.Name)">Orders history</a>
 
            </li>
        }
@@ -31,27 +31,27 @@
         {
 
             <li class="nav-item" href="/" >
-                <a class="btn btn-success " asp-area="Admin" asp-controller="Drinks" asp-action="Add">Add Drink</a>
+                <a class="nav-link" style="color: orange" asp-area="Admin" asp-controller="Drinks" asp-action="Add">Add Drink</a>
             </li>
 
         }
 
         <li class="nav-item">
-            <a class="btn btn-warning" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="btn btn-danger">Logout</button>
+            <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn nav-link" style="color: red">Logout</button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="btn btn-danger" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link" style="color: red" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link" style="color: greenyellow" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
 </ul>

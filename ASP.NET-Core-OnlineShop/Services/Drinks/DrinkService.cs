@@ -34,7 +34,8 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
                     Name = d.Name,
                     ImageThumbnailUrl = d.ImageThumbnailUrl,
                     Price = d.Price,
-                    ShortDescription = d.ShortDescription
+                    ShortDescription = d.ShortDescription,
+                    Category = d.Category.CategoryName
 
                 }).ToList();
             }
@@ -46,7 +47,8 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
                     Name = d.Name,
                     ImageThumbnailUrl = d.ImageThumbnailUrl,
                     Price = d.Price,
-                    ShortDescription = d.ShortDescription
+                    ShortDescription = d.ShortDescription,
+                    Category = d.Category.CategoryName
 
                 }).ToList(); ;
             }

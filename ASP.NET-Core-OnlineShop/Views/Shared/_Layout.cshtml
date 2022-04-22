@@ -8,60 +8,52 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dizzy Bar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
 
-                        <li class="dropdown">
-                            <a asp-area="" asp-controller="Drinks" asp-action="AllDrinks" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Drinks<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dizzy Bar</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                    <li class="nav-item"> <a class="nav-link" asp-controller="About" asp-action="AboutUs" class="btn btn-danger">Contact</a> </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"> Drinks </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="NonAlcoholicDrinks" asp-route-category="">Non-alcoholic drinks</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AlcoholicDrinks" asp-route-category="">Alcoholic drinks</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AllDrinks" asp-route-category="">All Drinks</a></li>
+                        </ul>
 
-                                <a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="NonAlcoholicDrinks" asp-route-category="">Non-alcoholic</a>
+                    </li>
+                    <form class="navbar-form form-inline my-2 my-lg-0" asp-controller="Drinks" asp-action="Serch" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search for a drink" name="serchingTerm" value="@ViewData["serchingTerm"]">
+                        </div>
+                    </form>
+                </ul>
+                <partial name="_LoginPartial"/>
 
-                                <a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AlcoholicDrinks" asp-route-category="">Alcoholic drinks</a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AllDrinks" asp-route-category="">View all drinks</a>
-                            </ul>
-                        </li>
-
-                        <form class="navbar-form navbar-right" asp-controller="Drinks" asp-action="Serch" method="get">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search for a drink" name="serchingTerm" value="@ViewData["serchingTerm"]">
-                            </div>
-                        </form>
-
-                        <a asp-controller="About" asp-action="AboutUs" class="btn btn-danger">About us</a>
-
-
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy;Made by Krustyo Petrov 2022 - <a asp-area="" asp-controller="About" asp-action="AboutUs">Our Contacts and Locations</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy;Made by Krustyo Petrov 2022 - <a asp-area="" asp-controller="About" asp-action="AboutUs">Our Contacts and Locations</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

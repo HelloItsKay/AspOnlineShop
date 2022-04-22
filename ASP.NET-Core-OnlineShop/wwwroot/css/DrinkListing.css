@@ -1,6 +1,4 @@
-﻿body {
-    background-color: #eee
-}
+﻿
 
 .mt-50 {
     margin-top: 50px
@@ -71,7 +69,7 @@
 
 .product-title {
     margin-bottom: 18px;
-    font-size: 16px;
+    font-size: 28px;
     color: #3ba9fc
     font-weight: normal
 }
