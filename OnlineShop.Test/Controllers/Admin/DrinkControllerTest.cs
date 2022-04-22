@@ -35,11 +35,11 @@ namespace OnlineShop.Test.Controllers.Admin
             var controller = new DrinksController(service);
             var drink = data.Drinks.Add(new Drink()
             {
-                Id = "test"
+                Id = "flag"
             });
             data.SaveChanges();
 
-            var result = controller.Edit("test");
+            var result = controller.Edit("flag");
             Assert.IsType<ViewResult>(result);
         }
 
@@ -52,11 +52,11 @@ namespace OnlineShop.Test.Controllers.Admin
             var controller = new DrinksController(service);
             var drink = data.Drinks.Add(new Drink()
             {
-                Id = "test"
+                Id = "flag"
             });
             data.SaveChanges();
 
-            var result = controller.Delete("test");
+            var result = controller.Delete("flag");
             Assert.IsType<RedirectResult>(result);
         }
     }

@@ -56,10 +56,10 @@ namespace OnlineShop.Test.Controllers
 
           var drink=  data.Drinks.Add(new Drink()
             {
-                Id = "test"
+                Id = "flag"
             });
 
-            var result = controller.Details("test");
+            var result = controller.Details("flag");
             Assert.IsType<ViewResult>(result);
         }
     }

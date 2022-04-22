@@ -26,12 +26,12 @@ namespace OnlineShop.Test.Services
             data.Orders.Add(new Order()
             {
                 OrderId = "1",
-                Email = "test@test.com"
+                Email = "flag@flag.com"
             });
             data.SaveChanges();
 
             var orderService = new OrderService(cart,data);
-            string username = "test@test.com";
+            string username = "flag@flag.com";
             var result=  orderService.GetMyOrderId(username);
 
             Assert.Equal("1",result.FirstOrDefault());
@@ -49,13 +49,13 @@ namespace OnlineShop.Test.Services
             data.Orders.Add(new Order()
             {
                 OrderId = "1",
-                Email = "test@test.com"
+                Email = "flag@flag.com"
             });
             data.SaveChanges();
 
             var orderService = new OrderService(cart, data);
-            string username = "test@test.com";
-            var result = orderService.GetMyOrderId($"test@asd.com");
+            string username = "flag@flag.com";
+            var result = orderService.GetMyOrderId($"flag@asd.com");
 
             Assert.Equal(0,result.Count);
 
@@ -70,26 +70,26 @@ namespace OnlineShop.Test.Services
 
             data.Orders.Add(new Order()
             {
-                FirstName = "test",
-                LastName = "test",
-                AddressLine1 = "test",
-                AddressLine2 = "test",
-                Email = "test",
-                Country = "test",
-                ZipCode = "test",
-                OrderId = "test",
+                FirstName = "flag",
+                LastName = "flag",
+                AddressLine1 = "flag",
+                AddressLine2 = "flag",
+                Email = "flag",
+                Country = "flag",
+                ZipCode = "flag",
+                OrderId = "flag",
 
             });
             data.OrderDetails.Add(new OrderDetail()
             {
                 Amount = 2,
-                OrderId = "test",
+                OrderId = "flag",
             });
             data.SaveChanges();
 
             var orderService = new OrderService(cart, data);
 
-            string username = "test";
+            string username = "flag";
             List<string> id = new List<string>();
             id.Add(username);
             var result=   orderService.MyOrders(id);
@@ -106,26 +106,26 @@ namespace OnlineShop.Test.Services
 
             data.Orders.Add(new Order()
             {
-                FirstName = "test",
-                LastName = "test",
-                AddressLine1 = "test",
-                AddressLine2 = "test",
-                Email = "test",
-                Country = "test",
-                ZipCode = "test",
-                OrderId = "test",
+                FirstName = "flag",
+                LastName = "flag",
+                AddressLine1 = "flag",
+                AddressLine2 = "flag",
+                Email = "flag",
+                Country = "flag",
+                ZipCode = "flag",
+                OrderId = "flag",
 
             });
             data.OrderDetails.Add(new OrderDetail()
             {
                 Amount = 2,
-                OrderId = "test",
+                OrderId = "flag",
             });
             data.SaveChanges();
 
             var orderService = new OrderService(cart, data);
 
-            string username = "test";
+            string username = "flag";
             List<string> id = new List<string>();
             id.Add(username);
             var result = orderService.MyOrders(null);

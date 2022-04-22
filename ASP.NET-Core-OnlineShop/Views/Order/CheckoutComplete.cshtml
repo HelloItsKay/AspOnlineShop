@@ -1,3 +1,25 @@
-﻿<h1>
-    @ViewBag.CheckoutCompleteMessage
-</h1>
+﻿
+<head>
+    <link rel="stylesheet" href="~/css/EmptyCart.css">
+</head>
+
+<div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center">
+                        <img src="https://www.pngkit.com/png/full/23-231283_free-clipart-picture-of-a-blue-flower-with.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                        <h3><strong>Checkout complete</strong></h3>
+                        <h4>Now you made me happy!</h4>
+                        <a class="btn btn-primary  cart_button_checkout align-middle " asp-action="AllDrinks" asp-controller="Drinks">Back to shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

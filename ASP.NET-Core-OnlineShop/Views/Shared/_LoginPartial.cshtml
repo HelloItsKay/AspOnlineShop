@@ -20,7 +20,7 @@
 
             <li class="nav-item">  
                 <a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="MyCart">MyCart <i class="fa fa-shopping-cart" style="font-size: 15px; color: orange">
-                     @shoppingCartService.GetShoppingCartItems().Where(x => x.Amount == x.Amount).Select(x => x.Amount).ToList().Sum()
+                     @shoppingCartService.CountCartItems(shoppingCartService.GetShoppingCartItems())
                 </i></a>
             </li>
 

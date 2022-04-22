@@ -16,13 +16,14 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         private readonly IOrderService orderService;
         private readonly IShoppingCartService shoppingCartService;
         private readonly IHashingService hashingService;
-
+        public static bool flag=false;
         public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService, IHashingService hashingService)
         {
             this.orderService = orderService;
             this.shoppingCartService = shoppingCartService;
             this.hashingService = hashingService;
         }
+
 
         [Authorize]
         public IActionResult Checkout()
@@ -40,11 +41,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
             if (items.Count == 0)
             {
+                flag = true;
                 return RedirectToAction("EmptyCart");
             }
 
             if (ModelState.IsValid)
             {
+                flag = true;
                 orderService.CreateOrder(order);
                 shoppingCartService.ClearCart();
                 return RedirectToAction("CheckoutComplete");
@@ -55,7 +58,13 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         [Authorize]
         public IActionResult CheckoutComplete()
         {
-            ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
+            if (flag.Equals(false))
+            {
+               
+                return BadRequest();
+            }
+
+            flag = false;
             return View();
         }
         [Authorize]
@@ -70,10 +79,16 @@ namespace ASP.NET_Core_OnlineShop.Controllers
 
         public IActionResult EmptyCart()
         {
-            var cartItemsCount = shoppingCartService.GetShoppingCartItems().Where(x => x.Amount == x.Amount)
-                .Select(x => x.Amount).ToList().Sum();
+            if (flag.Equals(false))
+            {
+                return BadRequest();
+            }
 
-            if (cartItemsCount>0)
+            flag = false;
+            var cartItems = shoppingCartService.GetShoppingCartItems();
+            var cartItemsCount = shoppingCartService.CountCartItems(cartItems);
+
+            if (cartItemsCount > 0)
             {
                 return Redirect("~/ShoppingCart/MyCart");
             }

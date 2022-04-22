@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
+using ASP.NET_Core_OnlineShop.Data;
 using ASP.NET_Core_OnlineShop.Data.Models;
 using ASP.NET_Core_OnlineShop.Models.Drinks;
 using ASP.NET_Core_OnlineShop.Services.Drinks;
+using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
 using OnlineShop.Test.Mocks;
 using Xunit;
 
@@ -162,28 +164,6 @@ namespace OnlineShop.Test.Services
         }
 
         [Fact]
-        public void SerchShouldReturnListWithItems()
-        {
-            using var data = DatabaseMock.Instance;
-
-
-            Drink drink = new Drink
-            {
-                Name = "asd"
-            };
-
-            data.Add(drink);
-            data.SaveChanges();
-            var drinkService = new DrinkService(data);
-
-
-            var result = drinkService.Serch("asd");
-
-            Assert.Equal(1, result.Count);
-
-        }
-
-        [Fact]
         public void SerchShouldReturnNothingWhenTermDoesNotExist()
         {
             using var data = DatabaseMock.Instance;
@@ -204,39 +184,6 @@ namespace OnlineShop.Test.Services
             Assert.Equal(0, result.Count);
 
         }
-
-
-        [Fact]
-        public void SerchShouldReturnEveruthingWhenNull()
-        {
-            using var data = DatabaseMock.Instance;
-
-
-            Drink drink = new Drink
-            {
-                Name = "asd"
-            };
-            Drink drink1 = new Drink
-            {
-                Name = "bsd"
-            };
-            Drink drink2 = new Drink
-            {
-                Name = "csd"
-            };
-            data.Add(drink);
-            data.Add(drink1);
-            data.Add(drink2);
-            data.SaveChanges();
-            var drinkService = new DrinkService(data);
-
-
-            var result = drinkService.Serch(null);
-
-            Assert.Equal(3, result.Count);
-
-        }
-
 
 
         [Fact]
@@ -346,41 +293,6 @@ namespace OnlineShop.Test.Services
 
 
         [Fact]
-        public void GetAllDrinksShouldReturnListWithItems()
-        {
-            using var data = DatabaseMock.Instance;
-
-
-            Drink drink = new Drink
-            {
-                Id = "1",
-                Name = "asd"
-            };
-            Drink drink1 = new Drink
-            {
-                Id = "2",
-                Name = "bsd"
-            };
-            Drink drink2 = new Drink
-            {
-                Id = "3",
-                Name = "csd"
-            };
-            data.Add(drink);
-            data.Add(drink1);
-            data.Add(drink2);
-            data.SaveChanges();
-            var drinkService = new DrinkService(data);
-
-
-            var result = drinkService.GetAllDrinks();
-            var actual = result.Count();
-
-            Assert.Equal(3, actual);
-            Assert.IsType<List<DrinksListingViewModel>>(result);
-
-        }
-        [Fact]
         public void GetAllDrinksShouldReturnNothingWhenDbEmpty()
         {
             using var data = DatabaseMock.Instance;
@@ -406,7 +318,7 @@ namespace OnlineShop.Test.Services
             DrinkFormModel drink = new DrinkFormModel()
             {
 
-                Name = "test",
+                Name = "flag",
                 Price = 11,
                 ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
                 LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
@@ -420,7 +332,7 @@ namespace OnlineShop.Test.Services
             Assert.Equal(1, data.Drinks.Count());
 
         }
-       
+
 
         [Fact]
         public void GetDrinkCategoriesShouldReturnFalse()
@@ -429,7 +341,7 @@ namespace OnlineShop.Test.Services
             Drink drink = new Drink()
             {
 
-                Name = "test",
+                Name = "flag",
                 Price = 11,
                 ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
                 LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
@@ -439,7 +351,7 @@ namespace OnlineShop.Test.Services
             }; Drink drink2 = new Drink()
             {
                 Id = "1",
-                Name = "test",
+                Name = "flag",
                 Price = 11,
                 ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
                 LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
@@ -456,7 +368,7 @@ namespace OnlineShop.Test.Services
             DrinkFormModel model = new DrinkFormModel()
             {
                 Id = "1",
-                Name = "test",
+                Name = "flag",
                 Price = 11,
                 ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
                 LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
@@ -469,11 +381,54 @@ namespace OnlineShop.Test.Services
 
             Assert.Equal(drink2.CategoryId, model.CategoryId);
             Assert.False(result);
-
-
-
         }
 
-        
+        [Fact]
+        public void GetDrinkCategoriesShoulnModel()
+        {
+            using var data = DatabaseMock.Instance;
+            Drink drink = new Drink()
+            {
+
+                Name = "flag",
+                Price = 11,
+                ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
+                LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
+                CategoryId = 1,
+                ImageThumbnailUrl = null,
+                ImageUrl = null,
+            }; Drink drink2 = new Drink()
+            {
+                Id = "1",
+                Name = "flag",
+                Price = 11,
+                ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
+                LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
+                CategoryId = 1,
+                ImageThumbnailUrl = null,
+                ImageUrl = null,
+            };
+            data.Add(drink);
+            data.Add(drink2);
+            data.SaveChanges();
+
+            var drinkService = new DrinkService(data);
+
+            DrinkFormModel model = new DrinkFormModel()
+            {
+                Id = "1",
+                Name = "flag",
+                Price = 11,
+                ShortDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
+                LongDescription = "alsidhjaklsjdhakjsdhalsjdhalskjdhalskjdhalsjdhalksjdhla",
+                CategoryId = 1,
+                ImageThumbnailUrl = null,
+                ImageUrl = null,
+            };
+            var result = drinkService.GetDrinkCategories().FirstOrDefault();
+
+
+            Assert.IsNotType<DrinksCategoryServiceModel>(result);
+        }
     }
 }

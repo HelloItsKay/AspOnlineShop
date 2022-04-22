@@ -15,6 +15,115 @@ namespace OnlineShop.Test.Services
 {
     public static class ShoppingCartServiceTest
     {
+
+        [Fact]
+        public static void GeiveCartToViwSouldReturnCartModel()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag"
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+            data.ShoppingCartItems.Add(new ShoppingCartItem()
+            {
+                Drink = drink,
+                Amount = 3,
+                ShoppingCartId = "123",
+                ShoppingCartItemId = 13,
+            });
+            data.SaveChanges();
+
+            cart.ShoppingCartId = "123";
+
+            var result = shoppingCartService.GiveCartToView();
+
+            Assert.IsType<ShoppingCart>(result);
+
+
+        }
+
+        [Fact]
+        public static void ModelApropriationShouldReturnSameResultAsExpectedOne()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag"
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+            data.ShoppingCartItems.Add(new ShoppingCartItem()
+            {
+                Drink = drink,
+                Amount = 3,
+                ShoppingCartId = "123",
+                ShoppingCartItemId = 13,
+            });
+            data.SaveChanges();
+
+            cart.ShoppingCartId = "123";
+
+            var list = data.ShoppingCartItems.ToList();
+          shoppingCartService.ModelAppropriation(list);
+
+          Assert.Equal(list ,cart.ShoppingCartItems);
+        }
+        [Fact]
+        public static void SelectDriShouldReturnValidDrinknk()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag"
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+            data.ShoppingCartItems.Add(new ShoppingCartItem()
+            {
+                Drink = drink,
+                Amount = 3,
+                ShoppingCartId = "123",
+                ShoppingCartItemId = 13,
+            });
+            data.SaveChanges();
+
+            cart.ShoppingCartId = "123";
+
+            
+           var actual=  shoppingCartService.SelectedDrink("flag");
+           var expected= data.Drinks.FirstOrDefault(p => p.Id == "flag");
+
+
+            Assert.Equal(expected, actual);
+        }
+
+
         [Fact]
         public static void GetShoppingCartItemsReturnValueLikeLIstShopingCartItem()
         {
@@ -27,8 +136,8 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
             data.Add(drink);
             data.SaveChanges();
@@ -53,7 +162,41 @@ namespace OnlineShop.Test.Services
 
         }
 
+        [Fact]
+        public static void AddItemChekIfItemInCartIsSameAsAdded()
+        {
+            var data = DatabaseMock.Instance;
 
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag"
+            };
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "flag"
+            };
+            data.Add(drink);
+            data.Add(drink2);
+            data.SaveChanges();
+
+
+
+            shoppingCartService.AddToCart(drink2, 2);
+            var actual = shoppingCartService.GetShoppingCartItems().ToList();
+
+            Assert.Equal(drink2,actual[0].Drink);
+
+
+
+        }
         [Fact] public static void AddItemToCartShouldIncreaseValue()
         {
             var data = DatabaseMock.Instance;
@@ -65,14 +208,14 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
 
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test"
+                Name = "flag"
             };
             data.Add(drink);
             data.Add(drink2);
@@ -90,6 +233,8 @@ namespace OnlineShop.Test.Services
 
         }
 
+
+
         [Fact]
         public static void AddItemToCartShouldAddNewItemIfDoesNotExist()
         {
@@ -102,14 +247,14 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
 
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test"
+                Name = "flag"
             };
             data.Add(drink);
             data.SaveChanges();
@@ -133,15 +278,15 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
 
 
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test"
+                Name = "flag"
             };
             data.Add(drink);
             data.Add(drink2);
@@ -176,15 +321,15 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
 
 
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test"
+                Name = "flag"
             };
             data.Add(drink);
             data.SaveChanges();
@@ -214,15 +359,15 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
 
 
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test"
+                Name = "flag"
             };
             data.Add(drink);
             data.Add(drink2);
@@ -241,10 +386,47 @@ namespace OnlineShop.Test.Services
             Assert.Equal(2, result.Count);
             Assert.Contains(drink.Id, result[0].Drink.Id);
             Assert.Contains(drink2.Id, result[1].Drink.Id);
+            
+        }
+
+
+
+        [Fact]
+        public static void GetShopingCartItemsShouldReturnProperObject()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag"
+            };
+
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "flag"
+            };
+            data.Add(drink);
+            data.Add(drink2);
+            data.SaveChanges();
 
 
 
 
+            shoppingCartService.AddToCart(drink, 1);
+
+            var expected = shoppingCartService.GetShoppingCartItems().ToList();
+            var result = shoppingCartService.GetShoppingCartItems();
+
+
+            Assert.Equal(expected[0], result[0]);
 
         }
         [Fact]
@@ -259,15 +441,15 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test"
+                Id = "flag",
+                Name = "flag"
             };
 
 
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test"
+                Name = "flag"
             };
             data.Add(drink);
             data.Add(drink2);
@@ -304,8 +486,8 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test",
+                Id = "flag",
+                Name = "flag",
                 Price = 10
             };
 
@@ -313,7 +495,7 @@ namespace OnlineShop.Test.Services
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test",
+                Name = "flag",
                 Price = 20,
             };
             data.Add(drink);
@@ -351,8 +533,8 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test",
+                Id = "flag",
+                Name = "flag",
                 Price = 10
             };
 
@@ -360,7 +542,7 @@ namespace OnlineShop.Test.Services
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test",
+                Name = "flag",
                 Price = 20,
             };
             data.Add(drink);
@@ -393,8 +575,8 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test",
+                Id = "flag",
+                Name = "flag",
                 Price = 10
             };
 
@@ -402,7 +584,7 @@ namespace OnlineShop.Test.Services
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test",
+                Name = "flag",
                 Price = 20,
             };
             data.Add(drink);
@@ -437,8 +619,8 @@ namespace OnlineShop.Test.Services
 
             Drink drink = new Drink()
             {
-                Id = "test",
-                Name = "test",
+                Id = "flag",
+                Name = "flag",
                 Price = 10
             };
 
@@ -446,7 +628,7 @@ namespace OnlineShop.Test.Services
             Drink drink2 = new Drink()
             {
                 Id = "test2",
-                Name = "test",
+                Name = "flag",
                 Price = 20,
             };
             data.Add(drink);
@@ -458,6 +640,102 @@ namespace OnlineShop.Test.Services
 
             Assert.Null(result);
             
+
+
+
+        }
+
+
+        [Fact]
+        public static void CountShouldReturnValidAmountCount()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag",
+                Price = 10
+            };
+
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "flag",
+                Price = 20,
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+
+            var result = shoppingCartService.CountCartItems(shoppingCartService.GetShoppingCartItems());
+
+
+            Assert.NotNull(result);
+            Equals(1, result);
+
+
+
+
+        }
+
+        [Fact]
+        public static void CountShouldReturnInt()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            Drink drink = new Drink()
+            {
+                Id = "flag",
+                Name = "flag",
+                Price = 10
+            };
+
+
+            Drink drink2 = new Drink()
+            {
+                Id = "test2",
+                Name = "flag",
+                Price = 20,
+            };
+            data.Add(drink);
+            data.SaveChanges();
+
+
+            var result = shoppingCartService.CountCartItems(shoppingCartService.GetShoppingCartItems());
+
+            var expected = result.GetType();
+            Assert.Equal(typeof(int),expected);
+        }
+
+
+
+        [Fact]
+        public static void CountShouldReturnError()
+        {
+            var data = DatabaseMock.Instance;
+
+            var cart = new ShoppingCart(data);
+            var shoppingCartService = new ShoppingCartService(data, cart);
+
+
+
+            var result = shoppingCartService.CountCartItems(shoppingCartService.GetShoppingCartItems());
+
+            Assert.NotNull(result);
+           Assert.Equal(0,result);
+
 
 
 

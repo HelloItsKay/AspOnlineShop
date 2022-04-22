@@ -37,6 +37,11 @@
         }
 
 
+        public int CountCartItems(List<ShoppingCartItem> cartItems)
+        {
+            return cartItems.Where(x => x.Amount == x.Amount)
+                .Select(x => x.Amount).ToList().Sum();
+        }
 
         public void AddToCart(Drink drink, int amount)
         {
@@ -129,5 +134,7 @@
         {
             return data.Drinks.FirstOrDefault(p => p.Id == drinkId);
         }
+
+        
     }
 }

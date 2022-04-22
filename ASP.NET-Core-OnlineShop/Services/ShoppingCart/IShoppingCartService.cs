@@ -5,6 +5,8 @@
 
     public interface IShoppingCartService
     {
+
+        public int CountCartItems(List<ShoppingCartItem> cartItems);
         void AddToCart(Drink drink, int amount);
          int RemoveFromCart(Drink drink);
         List<ShoppingCartItem> GetShoppingCartItems();

@@ -1,29 +1,22 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=636340e9_002Da8f0_002D4814_002Daf4c_002Dd318cb601f30/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="IndexShouldReturnCorrectModelAndView" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.DrinkControllerTest.AllDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.DrinkControllerTest.asd&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.DrinkControllerTest.AlchoholDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.DrinkControllerTest.NonAlchoholDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.DrinkControllerTest.DetailsShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.Admin.DrinkControllerTest.AllDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.Admin.DrinkControllerTest.EditDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.Admin.DrinkControllerTest.DeleteDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.HomeControllerTest.AllDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.OrdersControllerTest.AllDrinksShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.OrdersControllerTest.MyOrdersShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.OrdersControllerTest.CheckoutCompleteShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.OrdersControllerTest.CheckoutShouldReturnView&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Controllers.ShoppingCartControllerTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\krust\AppData\Local\Temp\JetBrains\ReSharperPlatformVs16\vAny_cb1a6ecf\CoverageData\_ASP.NET-Core-OnlineShop.-1422581844\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9f05d070_002D8c19_002D4b26_002D9651_002D1956dd451198/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;OnlineShop.Test&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test" Presentation="&amp;lt;OnlineShop.Test&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=be0dedff_002Dec0d_002D4860_002Dbb9e_002Da3349370ddc0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DrinkNameBelow3ShouldNotBeAdded" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::ECE8B93B-D37E-47B3-B910-E874ACA1B863::net5.0::OnlineShop.Test.Models.DrinksModelTest.DrinkNameBelow3ShouldNotBeAdded&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark1/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark1/Coords/@EntryValue">(Doc Ln 16 Col 42)</s:String>
 	<s:String x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark1/FileId/@EntryValue">4FE6EB35-AA82-498D-B8B2-9BFE6A6817C9/d:Views/d:Shared/f:VisualiseDrinksListingViewModelPartial.cshtml</s:String>

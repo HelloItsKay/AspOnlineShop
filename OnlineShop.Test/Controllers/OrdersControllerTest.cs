@@ -16,7 +16,7 @@ namespace OnlineShop.Test.Controllers
    public class OrdersControllerTest
     {
         [Fact]
-        public void EmptyCartShouldReturnView()
+        public void EmptyCartShouldReturnBadRequest()
         {
              var orderService  = MockOrderService.Instance;
 
@@ -25,7 +25,7 @@ namespace OnlineShop.Test.Controllers
             var controller = new OrderController(orderService,cart,hash);
 
             var result = controller.EmptyCart();
-            Assert.IsType<ViewResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
 
@@ -38,12 +38,12 @@ namespace OnlineShop.Test.Controllers
             var hash = MockHashingService.HomeServiceMoc.Instance;
             var controller = new OrderController(orderService, cart, hash);
 
-            var result = controller.MyOrders("test");
+            var result = controller.MyOrders("flag");
             Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
-        public void CheckoutCompleteShouldReturnView()
+        public void CheckoutCompleteShouldReturnViewBadRequest()
         {
             var orderService = MockOrderService.Instance;
 
@@ -52,7 +52,7 @@ namespace OnlineShop.Test.Controllers
             var controller = new OrderController(orderService, cart, hash);
 
             var result = controller.CheckoutComplete();
-            Assert.IsType<ViewResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
 

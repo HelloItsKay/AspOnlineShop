@@ -28,7 +28,7 @@ namespace OnlineShop.Test.Controllers
             var cart = MockShopingCartService.Instance;
             var controller = new ShoppingCartController(cart);
 
-            var result = controller.AddToShoppingCart("test");
+            var result = controller.AddToShoppingCart("flag");
             Assert.IsType<RedirectToActionResult>(result);
         }
 
@@ -38,7 +38,7 @@ namespace OnlineShop.Test.Controllers
             var cart = MockShopingCartService.Instance;
             var controller = new ShoppingCartController(cart);
 
-            var result = controller.RemoveFromShoppingCart("test");
+            var result = controller.RemoveFromShoppingCart("flag");
             Assert.IsType<RedirectToActionResult>(result);
         }
     }
