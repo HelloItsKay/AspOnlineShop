@@ -1,4 +1,6 @@
-﻿namespace ASP.NET_Core_OnlineShop.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace ASP.NET_Core_OnlineShop.Controllers
 {
     using System.Linq;
     using ASP.NET_Core_OnlineShop.Data;
@@ -14,7 +16,7 @@
             this.shopingCart = shopingCart;
 
         }
-
+        [Authorize]
         public IActionResult MyCart()
         {
             var items = shopingCart.GetShoppingCartItems();
@@ -30,7 +32,7 @@
 
             return View(shoppingCartViewModel);
         }
-
+        [Authorize]
         public IActionResult AddToShoppingCart(string drinkId)
         {
             var selectedDrink = shopingCart.SelectedDrink(drinkId);
@@ -42,7 +44,7 @@
 
             return RedirectToAction("MyCart");
         }
-
+        [Authorize]
         public IActionResult RemoveFromShoppingCart(string drinkId)
         {
             var selectedDrink = shopingCart.SelectedDrink(drinkId);

@@ -2,8 +2,10 @@ namespace ASP.NET_Core_OnlineShop.Models
 {
     public class ErrorViewModel
     {
-        public string RequestId { get; set; }
+        public string SerchingTerm { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
+        
+
     }
 }

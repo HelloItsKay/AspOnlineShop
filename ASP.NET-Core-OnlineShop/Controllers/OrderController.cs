@@ -76,7 +76,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             var myOrders = orderService.MyOrders(orderId);
             return View(myOrders);
         }
-
+        [Authorize]
         public IActionResult EmptyCart()
         {
             if (flag.Equals(false))

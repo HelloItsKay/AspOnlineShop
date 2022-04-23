@@ -15,25 +15,7 @@
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dizzy Bar</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                    <li class="nav-item"> <a class="nav-link" asp-controller="About" asp-action="AboutUs" class="btn btn-danger">Contact</a> </li>
-                    <li class="nav-item dropdown">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"> Drinks </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="NonAlcoholicDrinks" asp-route-category="">Non-alcoholic drinks</a></li>
-                            <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AlcoholicDrinks" asp-route-category="">Alcoholic drinks</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" asp-area="" asp-controller="Drinks" asp-action="AllDrinks" asp-route-category="">All Drinks</a></li>
-                        </ul>
-                    <li class="nav-item dropdown">
-                    </li>
-                    <form class="navbar-form form-inline my-2 my-lg-0" asp-controller="Drinks" asp-action="Serch" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search for a drink" name="serchingTerm" value="@ViewData["serchingTerm"]">
-                        </div>
-                    </form>
+
 
                 </ul>
                 <partial name="_LoginPartial"/>

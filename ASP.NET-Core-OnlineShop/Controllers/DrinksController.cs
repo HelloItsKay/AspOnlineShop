@@ -26,7 +26,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             {
                 return View("Error", new ErrorViewModel()
                 {
-                    RequestId = "The desired drink is not available"
+                    SerchingTerm = serchingTerm
                 });
             }
 
