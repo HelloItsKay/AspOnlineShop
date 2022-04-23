@@ -47,8 +47,9 @@ ul {
 .cart_section {
     width: 100%;
     max-width: 2000px;
-    padding-top: 0px;
-    padding-bottom: 0px
+    border: none;
+    height: 30%;
+    margin-bottom: 10%
 }
 
 .cart_title {
