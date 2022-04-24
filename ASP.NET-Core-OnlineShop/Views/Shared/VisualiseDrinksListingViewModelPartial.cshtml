@@ -1,5 +1,6 @@
-﻿
-@model List<DrinksListingViewModel>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<DrinksListingViewModel>
 <head>
     <link rel="stylesheet" href="~/css/DrinkListing.css">
 </head>
@@ -11,16 +12,16 @@
 
             <div class="col-md-4">
                 <div class="product-card mb-30">
-                    <a class="product-thumb" asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true"data-abc="true"><img src="@item.ImageThumbnailUrl" alt="Product"></a>
+                    <a class="product-thumb" asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true" data-abc="true"><img src="@item.ImageThumbnailUrl" alt="Product"></a>
                     <div class="product-card-body">
 
 
-                        <div class="product-category "><a  style="color:#dc3545" data-abc="true">@item.Category</a></div>
+                        <div class="product-category "><a style="color:#dc3545" data-abc="true">@item.Category</a></div>
 
 
 
                         <h3 class="product-title"><a asp-controller="Drinks" asp-action="Details" asp-route-id="@item.Id" data-abc="true">@item.Name</a></h3>
-                        
+
                         <h6 class="product-title"><h6 data-abc="true">@item.ShortDescription</h6></h6>
 
                         <h4 class="product-price">@item.Price.ToString("C", CultureInfo.GetCultureInfo("bg-BG"))</h4>
@@ -52,8 +53,16 @@
                     </div>
                 </div>
             </div>
-            
+
 
         }
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+    </script>
+}

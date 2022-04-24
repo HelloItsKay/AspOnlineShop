@@ -508,3 +508,7 @@ C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Te
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\obj\Debug\net5.0\OnlineShop.Test.pdb
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\obj\Debug\net5.0\OnlineShop.Test.genruntimeconfig.cache
 C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\bin\Debug\net5.0\X.PagedList.dll
+C:\Users\krust\source\repos\!ASP.NET-Core-OnlineShop\AspOnlineShop\OnlineShop.Test\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll

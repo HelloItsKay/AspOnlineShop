@@ -21,7 +21,7 @@ namespace OnlineShop.Test.Controllers
             var service = new DrinkService(data);
             var controller = new DrinksController(service);
 
-          var result=  controller.AllDrinks();
+            var result = controller.AllDrinks(1);
           Assert.IsType<ViewResult>(result);
         }
 
@@ -32,7 +32,7 @@ namespace OnlineShop.Test.Controllers
             var service = new DrinkService(data);
             var controller = new DrinksController(service);
 
-            var result = controller.AlcoholicDrinks();
+            var result = controller.AlcoholicDrinks(1);
             Assert.IsType<ViewResult>(result);
         }
 
@@ -43,7 +43,7 @@ namespace OnlineShop.Test.Controllers
             var service = new DrinkService(data);
             var controller = new DrinksController(service);
 
-            var result = controller.NonAlcoholicDrinks();
+            var result = controller.NonAlcoholicDrinks(1);
             Assert.IsType<ViewResult>(result);
         }
 
