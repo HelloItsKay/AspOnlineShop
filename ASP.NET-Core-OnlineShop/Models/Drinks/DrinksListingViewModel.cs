@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
-
-namespace ASP.NET_Core_OnlineShop.Models.Drinks
+﻿namespace ASP.NET_Core_OnlineShop.Models.Drinks
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ASP.NET_Core_OnlineShop.Services.Drinks.Models;
     public class DrinksListingViewModel
     {
         public string Id { get; set; }

@@ -1,11 +1,10 @@
-﻿
-using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
-using ASP.NET_Core_OnlineShop.Services.Drinks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using  static ASP.NET_Core_OnlineShop.WebConstants;
-namespace ASP.NET_Core_OnlineShop.Areas.Admin.Controllers
+﻿namespace ASP.NET_Core_OnlineShop.Areas.Admin.Controllers
 {
+    using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
+    using ASP.NET_Core_OnlineShop.Services.Drinks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using static ASP.NET_Core_OnlineShop.WebConstants;
     public class DrinksController:AdminController
     {
         private readonly IDrinkService service;

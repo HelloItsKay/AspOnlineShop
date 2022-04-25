@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NET_Core_OnlineShop.Data.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using static ASP.NET_Core_OnlineShop.Data.DataConstants;
-
-namespace ASP.NET_Core_OnlineShop.Models.Orders
+﻿namespace ASP.NET_Core_OnlineShop.Models.Orders
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ASP.NET_Core_OnlineShop.Data.Models;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
+    using static ASP.NET_Core_OnlineShop.Data.DataConstants;
     public class OrdersFormViewModel
     {
-     
+
         public string OrderId { get; set; } = Guid.NewGuid().ToString();
         public List<OrderDetail> OrderLines { get; set; }
 
@@ -54,8 +53,8 @@ namespace ASP.NET_Core_OnlineShop.Models.Orders
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        
-        
+
+
         [Column(TypeName = PriceType)]
         public decimal OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }

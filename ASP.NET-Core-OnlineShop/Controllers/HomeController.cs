@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ASP.NET_Core_OnlineShop.Data;
-using ASP.NET_Core_OnlineShop.Models.Drinks;
-using Microsoft.Extensions.Caching.Memory;
-
-namespace ASP.NET_Core_OnlineShop.Controllers
+﻿namespace ASP.NET_Core_OnlineShop.Controllers
 {
     using ASP.NET_Core_OnlineShop.Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
     using ASP.NET_Core_OnlineShop.Services.Home;
     using static ASP.NET_Core_OnlineShop.WebConstants;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ASP.NET_Core_OnlineShop.Data;
+    using ASP.NET_Core_OnlineShop.Models.Drinks;
+    using Microsoft.Extensions.Caching.Memory;
     public class HomeController : Controller
     {
         public readonly IHomeService service;

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ASP.NET_Core_OnlineShop.Services
+﻿namespace ASP.NET_Core_OnlineShop.Services
 {
-    public class HashingService:IHashingService
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class HashingService : IHashingService
     {
-        public  string Encrypt(string clearText)
+        public string Encrypt(string clearText)
         {
             string EncryptionKey = "abc123";
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
@@ -31,7 +31,7 @@ namespace ASP.NET_Core_OnlineShop.Services
             }
             return clearText;
         }
-        public  string Decrypt(string cipherText)
+        public string Decrypt(string cipherText)
         {
             string EncryptionKey = "abc123";
             cipherText = cipherText.Replace(" ", "+");

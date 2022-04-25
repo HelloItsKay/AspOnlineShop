@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using ASP.NET_Core_OnlineShop.Models.Orders;
-using ASP.NET_Core_OnlineShop.Services;
+﻿
 
 namespace ASP.NET_Core_OnlineShop.Controllers
 {
@@ -10,13 +8,16 @@ namespace ASP.NET_Core_OnlineShop.Controllers
     using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.Linq;
+    using ASP.NET_Core_OnlineShop.Models.Orders;
+    using ASP.NET_Core_OnlineShop.Services;
 
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
         private readonly IShoppingCartService shoppingCartService;
         private readonly IHashingService hashingService;
-        public static bool flag=false;
+        public static bool flag = false;
         public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService, IHashingService hashingService)
         {
             this.orderService = orderService;
@@ -60,7 +61,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
         {
             if (flag.Equals(false))
             {
-               
+
                 return BadRequest();
             }
 

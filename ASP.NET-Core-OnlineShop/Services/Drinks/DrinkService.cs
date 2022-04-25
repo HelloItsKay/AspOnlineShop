@@ -1,6 +1,4 @@
-﻿using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
-
-namespace ASP.NET_Core_OnlineShop.Services.Drinks
+﻿namespace ASP.NET_Core_OnlineShop.Services.Drinks
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -8,7 +6,7 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
     using ASP.NET_Core_OnlineShop.Data.Models;
     using ASP.NET_Core_OnlineShop.Models.Drinks;
     using Models;
-
+    using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
     public class DrinkService : IDrinkService
     {
         private readonly OnlineShopDbContext data;
@@ -179,9 +177,9 @@ namespace ASP.NET_Core_OnlineShop.Services.Drinks
         public void DeleteDrink(Drink drink)
         {
 
-            var test = data.ShoppingCartItems.Where(s=>s.Drink.Id==drink.Id).ToList();
+            var test = data.ShoppingCartItems.Where(s => s.Drink.Id == drink.Id).ToList();
 
-            if (test.Count>0)
+            if (test.Count > 0)
             {
                 foreach (var element in test)
                 {

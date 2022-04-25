@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
+﻿
 namespace ASP.NET_Core_OnlineShop.Controllers
 {
     using System.Linq;
@@ -7,11 +6,12 @@ namespace ASP.NET_Core_OnlineShop.Controllers
     using ASP.NET_Core_OnlineShop.Models.ShoppingCart;
     using ASP.NET_Core_OnlineShop.Services.ShoppingCart;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
 
     public class ShoppingCartController : Controller
     {
         private readonly IShoppingCartService shopingCart;
-        public ShoppingCartController( IShoppingCartService shopingCart)
+        public ShoppingCartController(IShoppingCartService shopingCart)
         {
             this.shopingCart = shopingCart;
 

@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
-using X.PagedList;
-
-namespace ASP.NET_Core_OnlineShop.Controllers
+﻿namespace ASP.NET_Core_OnlineShop.Controllers
 {
     using ASP.NET_Core_OnlineShop.Models;
     using ASP.NET_Core_OnlineShop.Models.Drinks;
@@ -10,6 +6,9 @@ namespace ASP.NET_Core_OnlineShop.Controllers
     using Microsoft.AspNetCore.Mvc;
     using ASP.NET_Core_OnlineShop.Services.Drinks;
     using static ASP.NET_Core_OnlineShop.WebConstants;
+    using System.Linq;
+    using ASP.NET_Core_OnlineShop.Areas.Admin.Models;
+    using X.PagedList;
     public class DrinksController : Controller
     {
         private readonly IDrinkService service;
@@ -40,7 +39,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             return View(drink);
         }
 
-        public IActionResult AllDrinks(int ? page)
+        public IActionResult AllDrinks(int? page)
         {
             var pageNumber = page ?? 1;
             int pageSize = 6;
@@ -49,7 +48,7 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             return View(onePageOfAllDrinks);
         }
 
-        public IActionResult AlcoholicDrinks(int ? page)
+        public IActionResult AlcoholicDrinks(int? page)
         {
 
             var pageNumber = page ?? 1;
@@ -59,9 +58,9 @@ namespace ASP.NET_Core_OnlineShop.Controllers
             return View(onePageOfAlcoholDrinks);
         }
 
-        public IActionResult NonAlcoholicDrinks(int ? page)
+        public IActionResult NonAlcoholicDrinks(int? page)
         {
-            
+
 
 
             var pageNumber = page ?? 1;
