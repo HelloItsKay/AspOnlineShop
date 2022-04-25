@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ASP.NET_Core_OnlineShop.Data.Migrations
+namespace ASP.NET_Core_OnlineShop.Migrations
 {
     [DbContext(typeof(OnlineShopDbContext))]
-    [Migration("20220410112659_Updated Constants fot the Data")]
-    partial class UpdatedConstantsfottheData
+    [Migration("20220425210535_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
